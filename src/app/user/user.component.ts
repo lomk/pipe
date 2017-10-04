@@ -5,7 +5,7 @@ import { UserService }       from './user.service';
 import {Router}                 from '@angular/router';
 
 @Component({
-    selector: 'my-local-ips',
+    selector: 'app-local-ips',
     templateUrl: './user.component.html' ,
     // styleUrls: [`./local-ip.component.css`],
     providers: [UserService]

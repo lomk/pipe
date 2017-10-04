@@ -32,7 +32,7 @@ export class UserFormComponent implements OnInit {
     }
 
     onFormSubmit(form: NgForm) {
-        let newUser = new User();
+        const newUser = new User();
         newUser.username = form.controls['username'].value;
         newUser.role = form.controls['role'].value;
         newUser.password = form.controls['password'].value;

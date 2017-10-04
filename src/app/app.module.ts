@@ -37,6 +37,8 @@ import {UserFormComponent}          from './user/user-form.component';
 import {UserIpService}              from './user-ip/user-ip.service';
 import {UserIpComponent}            from './user-ip/user-ip.component';
 import {UserIpFormComponent}        from './user-ip/user-ip-form.component';
+import {LoginService}               from './login/login.service';
+import {LoginComponent}             from './login/login.component';
 
 
 
@@ -71,6 +73,7 @@ import {UserIpFormComponent}        from './user-ip/user-ip-form.component';
         UserFormComponent,
         UserIpComponent,
         UserIpFormComponent,
+        LoginComponent
   ],
     providers: [
         RemoteIpService,
@@ -82,7 +85,8 @@ import {UserIpFormComponent}        from './user-ip/user-ip-form.component';
         TrafficQueueService,
         RoleService,
         UserService,
-        UserIpService
+        UserIpService,
+        LoginService
     ],
     bootstrap: [ AppComponent ]
 })

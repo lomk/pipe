@@ -1,0 +1,16 @@
+<form #loginForm="ngForm" (ngSubmit)="onFormSubmit(loginForm)">
+  <div class="form-group row">
+    <div class="col-xs-2">
+      <input class="form-control" placeholder="username" id="username" required minlength="2"
+             [(ngModel)]="user.username" name="username" #username="ngModel"/>
+    </div>
+    <div class="col-xs-2">
+      <input class="form-control" type="password" placeholder="password" id="password" required minlength="2"
+             [(ngModel)]="user.password" name="password" #password="ngModel"/>
+    </div>
+    <div class="col-xs-3">
+      <button class="btn btn-md btn-primary col-xs-8">Add</button>
+    </div>
+  </div>
+</form>
+
