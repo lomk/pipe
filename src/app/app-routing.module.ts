@@ -23,7 +23,7 @@ import {UserComponent}              from './user/user.component';
 import {UserFormComponent}          from './user/user-form.component';
 import {UserIpComponent}            from './user-ip/user-ip.component';
 import {UserIpFormComponent}        from './user-ip/user-ip-form.component';
-import {LoginComponent}             from "./login/login.component";
+import {LoginComponent}             from './login/login.component';
 
 const routes: Routes = [
     { path: '',                         redirectTo: '/remote-ips', pathMatch: 'full' },

@@ -8,7 +8,7 @@ import {Observable}     from 'rxjs/Observable';
 export class LoginService {
     private loginUrl = 'http://192.168.0.219:8080/login';
     private logoutUrl = 'http://192.168.0.219:8080/login';
-    private headers = new Headers({'Content-Type': 'x-www-form-urlencoded'});
+    private headers = new Headers({'Content-Type': 'application/x-www-form-urlencoded'});
 
     constructor(private http: Http) {
     }
@@ -16,8 +16,9 @@ export class LoginService {
 
     login(username: string, password: string): Observable<void> {
       const body = new URLSearchParams();
-      body.set('user', username);
+      body.set('username', username);
       body.set('password', password);
+      body.set('submit', 'Login');
 
       return this.http
         .post(this.loginUrl, body.toString(), {headers: this.headers})

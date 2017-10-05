@@ -11,13 +11,11 @@ import {Router}             from '@angular/router';
   providers: [LoginService]
 })
 export class LoginComponent implements OnInit {
-  user: User;
+  user: User = new User;
 
   constructor(private router: Router,
               private loginService: LoginService) {}
 
-  ngOnInit(): void {
-  }
 
   onFormSubmit(form: NgForm) {
     this.loginService.login(form.controls['username'].value, form.controls['password'].value)
@@ -25,4 +23,5 @@ export class LoginComponent implements OnInit {
         .catch(error =>  console.error('asdasdasdasdasd'));
       });
   }
+  ngOnInit(): void { console.log('Constructor initialised'); }
 }

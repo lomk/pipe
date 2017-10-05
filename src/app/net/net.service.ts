@@ -35,7 +35,7 @@ export class NetService {
         return this.http
             .post(this.netAddUrl, JSON.stringify(net), {headers: this.headers})
             .map(response => response.json() as Net)
-            .catch(this.handleError)
+            .catch(this.handleError);
     }
 
     search(term: string): Observable<Net[]> {

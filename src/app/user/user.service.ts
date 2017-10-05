@@ -1,6 +1,6 @@
 import { User }         from './user';
 
-import {Http}           from '@angular/http';
+import {Http, RequestOptions} from '@angular/http';
 import { Injectable }   from '@angular/core';
 import {Headers}        from '@angular/http';
 import {Observable}     from 'rxjs/Observable';
@@ -13,10 +13,14 @@ export class UserService {
     private userSearchUrl = 'http://192.168.0.219:8080/api/admin/user/search';
     private headers = new Headers({'Content-Type': 'application/json'});
 
+
     constructor(private http: Http) {
     }
     getUsers(): Observable<User[]> {
-        return this.http.get(this.userAllUrl)
+      const options = new RequestOptions();
+      options.withCredentials = true;
+
+        return this.http.get(this.userAllUrl, options)
             .map(response => response.json() as User[])
             .catch(this.handleError);
     }
