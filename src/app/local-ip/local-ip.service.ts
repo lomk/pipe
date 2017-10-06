@@ -1,6 +1,6 @@
 import { LocalIp }      from './local-ip';
 
-import {Http}           from '@angular/http';
+import {Http, RequestOptions} from '@angular/http';
 import { Injectable }   from '@angular/core';
 import {Headers}        from '@angular/http';
 import {Observable}     from 'rxjs/Observable';
@@ -16,34 +16,49 @@ export class LocalIpService {
     constructor(private http: Http) {
     }
     getLocalIps(): Observable<LocalIp[]> {
-        return this.http.get(this.localIpAllUrl)
+      const options = new RequestOptions();
+      options.withCredentials = true;
+      options.headers = this.headers;
+        return this.http.get(this.localIpAllUrl, options)
             .map(response => response.json() as LocalIp[])
             .catch(this.handleError);
     }
 
     getLocalIp(id: number): Observable<LocalIp> {
+      const options = new RequestOptions();
+      options.withCredentials = true;
+      options.headers = this.headers;
         const url = `${this.localIpUrl}/${id}`;
-        return this.http.get(url)
+        return this.http.get(url, options)
             .map(response => response.json() as LocalIp)
             .catch(this.handleError);
     }
 
     create(localIp: LocalIp): Observable<LocalIp> {
+      const options = new RequestOptions();
+      options.withCredentials = true;
+      options.headers = this.headers;
         return this.http
-            .post(this.localIpAddUrl, JSON.stringify(localIp), {headers: this.headers})
+            .post(this.localIpAddUrl, JSON.stringify(localIp), options)
             .map(response => response.json() as LocalIp)
             .catch(this.handleError);
     }
 
     search(term: string): Observable<LocalIp[]> {
+      const options = new RequestOptions();
+      options.withCredentials = true;
+      options.headers = this.headers;
         return this.http
-            .get(`${this.localIpSearchUrl}=${term}`)
+            .get(`${this.localIpSearchUrl}=${term}`, options)
             .map(response => response.json().data as LocalIp[]);
     }
 
     delete(id: number): Observable<void> {
+      const options = new RequestOptions();
+      options.withCredentials = true;
+      options.headers = this.headers;
         const url = `${this.localIpUrl}/${id}`;
-        return this.http.delete(url, {headers: this.headers})
+        return this.http.delete(url, options)
             .map(() => null)
             .catch(this.handleError);
     }

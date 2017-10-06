@@ -1,4 +1,4 @@
-import {Http}           from '@angular/http';
+import {Http, RequestOptions} from '@angular/http';
 import { Injectable }   from '@angular/core';
 import {Headers}        from '@angular/http';
 import {Observable}     from 'rxjs/Observable';
@@ -17,36 +17,51 @@ export class TrafficQueueService {
     constructor(private http: Http) {
     }
     getTrafficQueues(): Observable<TrafficQueue[]> {
-        return this.http.get(this.trafficQueueAllUrl)
+      const options = new RequestOptions();
+      options.withCredentials = true;
+      options.headers = this.headers;
+        return this.http.get(this.trafficQueueAllUrl, options)
             .map(response => response.json() as TrafficQueue[])
             .catch(this.handleError);
     }
 
 
     getTrafficQueue(id: number): Observable<TrafficQueue> {
+      const options = new RequestOptions();
+      options.withCredentials = true;
+      options.headers = this.headers;
         const url = `${this.trafficQueueUrl}/${id}`;
-        return this.http.get(url)
+        return this.http.get(url, options)
             .map(response => response.json() as TrafficQueue)
             .catch(this.handleError);
     }
 
     create(trafficQueue: TrafficQueue): Observable<TrafficQueue> {
+      const options = new RequestOptions();
+      options.withCredentials = true;
+      options.headers = this.headers;
         return this.http
-            .post(this.trafficQueueAddUrl, JSON.stringify(trafficQueue), {headers: this.headers})
+            .post(this.trafficQueueAddUrl, JSON.stringify(trafficQueue), options)
             .map(response => response.json() as TrafficQueue)
             .catch(this.handleError);
         // .catch(response => Observable.throw(response.json()));
     }
 
     search(term: string): Observable<TrafficQueue[]> {
+      const options = new RequestOptions();
+      options.withCredentials = true;
+      options.headers = this.headers;
         return this.http
-            .get(`${this.trafficQueueSearchUrl}=${term}`)
+            .get(`${this.trafficQueueSearchUrl}=${term}`, options)
             .map(response => response.json().data as TrafficQueue[]);
     }
 
     delete(id: number): Observable<void> {
+      const options = new RequestOptions();
+      options.withCredentials = true;
+      options.headers = this.headers;
         const url = `${this.trafficQueueUrl}/${id}`;
-        return this.http.delete(url, {headers: this.headers})
+        return this.http.delete(url, options)
             .map(() => null)
             .catch(this.handleError);
     }

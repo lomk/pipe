@@ -1,5 +1,5 @@
 import { RemoteIp }     from './remote-ip';
-import {Http}           from '@angular/http';
+import {Http, RequestOptions} from '@angular/http';
 import { Injectable }   from '@angular/core';
 import {Headers}        from '@angular/http';
 
@@ -26,7 +26,12 @@ export class RemoteIpService {
     //         .catch(this.handleError);
     // }
     getRemoteIps(): Observable<RemoteIp[]> {
-        return this.http.get(this.remoteIpAllUrl).map(response => response.json() as RemoteIp[]).catch(this.handleError);
+      const options = new RequestOptions();
+      options.withCredentials = true;
+      options.headers = this.headers;
+        return this.http.get(this.remoteIpAllUrl, options)
+          .map(response => response.json() as RemoteIp[])
+          .catch(this.handleError);
     }
 
     // Get data whit Promise
@@ -45,8 +50,11 @@ export class RemoteIpService {
     // }
 
     getRemoteIp(id: number): Observable<RemoteIp> {
+      const options = new RequestOptions();
+      options.withCredentials = true;
+      options.headers = this.headers;
         const url = `${this.remoteIpUrl}/${id}`;
-        return this.http.get(url)
+        return this.http.get(url, options)
             .map(response => response.json() as RemoteIp)
             .catch(this.handleError);
     }
@@ -59,22 +67,31 @@ export class RemoteIpService {
     //         .catch(this.handleError);
     // }
     create(remoteIp: RemoteIp): Observable<RemoteIp> {
+      const options = new RequestOptions();
+      options.withCredentials = true;
+      options.headers = this.headers;
         return this.http
-            .post(this.remoteIpAddUrl, JSON.stringify(remoteIp), {headers: this.headers})
+            .post(this.remoteIpAddUrl, JSON.stringify(remoteIp), options)
             .map(response => response.json() as RemoteIp)
             .catch(this.handleError);
         // .catch(response => Observable.throw(response.json()));
     }
 
     search(term: string): Observable<RemoteIp[]> {
+      const options = new RequestOptions();
+      options.withCredentials = true;
+      options.headers = this.headers;
         return this.http
-            .get(`${this.remoteIpSearchUrl}=${term}`)
+            .get(`${this.remoteIpSearchUrl}=${term}`, options)
             .map(response => response.json().data as RemoteIp[]);
     }
 
     delete(id: number): Observable<void> {
+      const options = new RequestOptions();
+      options.withCredentials = true;
+      options.headers = this.headers;
         const url = `${this.remoteIpUrl}/${id}`;
-        return this.http.delete(url, {headers: this.headers})
+        return this.http.delete(url, options)
             .map(() => null)
             .catch(this.handleError);
     }

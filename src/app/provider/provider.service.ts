@@ -1,5 +1,5 @@
 import { Provider }     from './provider';
-import {Http}           from '@angular/http';
+import {Http, RequestOptions} from '@angular/http';
 import { Injectable }   from '@angular/core';
 import {Headers}        from '@angular/http';
 
@@ -20,33 +20,48 @@ export class ProviderService {
     }
 
     getProviders(): Observable<Provider[]> {
-        return this.http.get(this.providerAllUrl).map(response => response.json() as Provider[]).catch(this.handleError);
+      const options = new RequestOptions();
+      options.withCredentials = true;
+      options.headers = this.headers;
+        return this.http.get(this.providerAllUrl, options).map(response => response.json() as Provider[]).catch(this.handleError);
     }
 
     getProvider(id: number): Observable<Provider> {
+      const options = new RequestOptions();
+      options.withCredentials = true;
+      options.headers = this.headers;
         const url = `${this.providerUrl}/${id}`;
-        return this.http.get(url)
+        return this.http.get(url, options)
             .map(response => response.json() as Provider)
             .catch(this.handleError);
     }
 
     create(provider: Provider): Observable<Provider> {
+      const options = new RequestOptions();
+      options.withCredentials = true;
+      options.headers = this.headers;
         return this.http
-            .post(this.providerAddUrl, JSON.stringify(provider), {headers: this.headers})
+            .post(this.providerAddUrl, JSON.stringify(provider), options)
             .map(response => response.json() as Provider)
             .catch(this.handleError);
         // .catch(response => Observable.throw(response.json()));
     }
 
     search(term: string): Observable<Provider[]> {
+      const options = new RequestOptions();
+      options.withCredentials = true;
+      options.headers = this.headers;
         return this.http
-            .get(`${this.providerSearchUrl}=${term}`)
+            .get(`${this.providerSearchUrl}=${term}`, options)
             .map(response => response.json().data as Provider[]);
     }
 
     delete(id: number): Observable<void> {
+      const options = new RequestOptions();
+      options.withCredentials = true;
+      options.headers = this.headers;
         const url = `${this.providerUrl}/${id}`;
-        return this.http.delete(url, {headers: this.headers})
+        return this.http.delete(url, options)
             .map(() => null)
             .catch(this.handleError);
     }

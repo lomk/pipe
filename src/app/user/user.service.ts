@@ -19,6 +19,7 @@ export class UserService {
     getUsers(): Observable<User[]> {
       const options = new RequestOptions();
       options.withCredentials = true;
+      options.headers = this.headers;
 
         return this.http.get(this.userAllUrl, options)
             .map(response => response.json() as User[])
@@ -26,28 +27,40 @@ export class UserService {
     }
 
     getUser(id: number): Observable<User> {
+      const options = new RequestOptions();
+      options.withCredentials = true;
+      options.headers = this.headers;
         const url = `${this.userUrl}/${id}`;
-        return this.http.get(url)
+        return this.http.get(url, options)
             .map(response => response.json() as User)
             .catch(this.handleError);
     }
 
     create(user: User): Observable<User> {
+      const options = new RequestOptions();
+      options.withCredentials = true;
+      options.headers = this.headers;
         return this.http
-            .post(this.userAddUrl, JSON.stringify(user), {headers: this.headers})
+            .post(this.userAddUrl, JSON.stringify(user), options)
             .map(response => response.json() as User)
             .catch(this.handleError);
     }
 
     search(term: string): Observable<User[]> {
+      const options = new RequestOptions();
+      options.withCredentials = true;
+      options.headers = this.headers;
         return this.http
-            .get(`${this.userSearchUrl}=${term}`)
+            .get(`${this.userSearchUrl}=${term}`, options)
             .map(response => response.json().data as User[]);
     }
 
     delete(id: number): Observable<void> {
+      const options = new RequestOptions();
+      options.withCredentials = true;
+      options.headers = this.headers;
         const url = `${this.userUrl}/${id}`;
-        return this.http.delete(url, {headers: this.headers})
+        return this.http.delete(url, options)
             .map(() => null)
             .catch(this.handleError);
     }

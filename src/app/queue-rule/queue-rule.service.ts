@@ -1,6 +1,6 @@
 
 import {Injectable} from '@angular/core';
-import {Http} from '@angular/http';
+import {Http, RequestOptions} from '@angular/http';
 import {QueueRule} from './queue-rule';
 import {Headers}        from '@angular/http';
 
@@ -34,7 +34,12 @@ export class QueueRuleService {
     // }
 
     getQueueRules(): Observable<QueueRule[]> {
-        return this.http.get(this.queueRuleAllUrl).map(res => res.json() as QueueRule[]).catch(this.handleError);
+      const options = new RequestOptions();
+      options.withCredentials = true;
+      options.headers = this.headers;
+        return this.http.get(this.queueRuleAllUrl, options)
+          .map(res => res.json() as QueueRule[])
+          .catch(this.handleError);
     }
     // Code to get data with Promise
     // getQueueRule(id: number): Promise<QueueRule> {
@@ -45,26 +50,38 @@ export class QueueRuleService {
     //         .catch(this.handleError);
     // }
     getQueueRule(id: number): Observable<QueueRule> {
+      const options = new RequestOptions();
+      options.withCredentials = true;
+      options.headers = this.headers;
         const url = `${this.queueRuleUrl}/${id}`;
-        return this.http.get(url).map(res => res.json() as QueueRule).catch(this.handleError);
+        return this.http.get(url, options).map(res => res.json() as QueueRule).catch(this.handleError);
     }
 
     create(queueRule: QueueRule): Observable<QueueRule> {
+      const options = new RequestOptions();
+      options.withCredentials = true;
+      options.headers = this.headers;
         return this.http
-            .post(this.queueRuleAddUrl, JSON.stringify(queueRule),{headers: this.headers})
+            .post(this.queueRuleAddUrl, JSON.stringify(queueRule), options)
             .map(response => response.json() as QueueRule)
             .catch(this.handleError);
     }
 
     search(term: string): Observable<QueueRule[]> {
+      const options = new RequestOptions();
+      options.withCredentials = true;
+      options.headers = this.headers;
         return this.http
-            .get(`${this.queueRuleSearchUrl}=${term}`)
+            .get(`${this.queueRuleSearchUrl}=${term}`, options)
             .map(response => response.json().data as QueueRule[]);
     }
 
     delete(id: number): Observable<void> {
+      const options = new RequestOptions();
+      options.withCredentials = true;
+      options.headers = this.headers;
         const url = `${this.queueRuleUrl}/${id}`;
-        return this.http.delete(url, {headers: this.headers})
+        return this.http.delete(url, options)
             .map(() => null)
             .catch(this.handleError);
     }

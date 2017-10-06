@@ -1,5 +1,5 @@
 import { QueueType }     from './queue-type';
-import {Http}           from '@angular/http';
+import {Http, RequestOptions} from '@angular/http';
 import { Injectable }   from '@angular/core';
 import {Headers}        from '@angular/http';
 
@@ -19,33 +19,50 @@ export class QueueTypeService {
     constructor(private http: Http) {
     }
     getQueueTypes(): Observable<QueueType[]> {
-        return this.http.get(this.queueTypeAllUrl).map(response => response.json() as QueueType[]).catch(this.handleError);
+      const options = new RequestOptions();
+      options.withCredentials = true;
+      options.headers = this.headers;
+        return this.http.get(this.queueTypeAllUrl, options)
+          .map(response => response.json() as QueueType[])
+          .catch(this.handleError);
     }
 
     getQueueType(id: number): Observable<QueueType> {
+      const options = new RequestOptions();
+      options.withCredentials = true;
+      options.headers = this.headers;
         const url = `${this.queueTypeUrl}/${id}`;
-        return this.http.get(url)
+        return this.http.get(url, options)
             .map(response => response.json() as QueueType)
             .catch(this.handleError);
     }
 
     create(queueType: QueueType): Observable<QueueType> {
+      const options = new RequestOptions();
+      options.withCredentials = true;
+      options.headers = this.headers;
         return this.http
-            .post(this.queueTypeAddUrl, JSON.stringify(queueType), {headers: this.headers})
+            .post(this.queueTypeAddUrl, JSON.stringify(queueType), options)
             .map(response => response.json() as QueueType)
             .catch(this.handleError);
         // .catch(response => Observable.throw(response.json()));
     }
 
     search(term: string): Observable<QueueType[]> {
+      const options = new RequestOptions();
+      options.withCredentials = true;
+      options.headers = this.headers;
         return this.http
-            .get(`${this.queueTypeSearchUrl}=${term}`)
+            .get(`${this.queueTypeSearchUrl}=${term}`, options)
             .map(response => response.json().data as QueueType[]);
     }
 
     delete(id: number): Observable<void> {
+      const options = new RequestOptions();
+      options.withCredentials = true;
+      options.headers = this.headers;
         const url = `${this.queueTypeUrl}/${id}`;
-        return this.http.delete(url, {headers: this.headers})
+        return this.http.delete(url, options)
             .map(() => null)
             .catch(this.handleError);
     }

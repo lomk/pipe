@@ -1,6 +1,6 @@
 import { UserIp }         from './user-ip';
 
-import {Http}           from '@angular/http';
+import {Http, RequestOptions} from '@angular/http';
 import { Injectable }   from '@angular/core';
 import {Headers}        from '@angular/http';
 import {Observable}     from 'rxjs/Observable';
@@ -16,34 +16,49 @@ export class UserIpService {
     constructor(private http: Http) {
     }
     getUserIps(): Observable<UserIp[]> {
-        return this.http.get(this.userIpAllUrl)
+      const options = new RequestOptions();
+      options.withCredentials = true;
+      options.headers = this.headers;
+        return this.http.get(this.userIpAllUrl, options)
             .map(response => response.json() as UserIp[])
             .catch(this.handleError);
     }
 
     getUserIp(id: number): Observable<UserIp> {
+      const options = new RequestOptions();
+      options.withCredentials = true;
+      options.headers = this.headers;
         const url = `${this.userIpUrl}/${id}`;
-        return this.http.get(url)
+        return this.http.get(url, options)
             .map(response => response.json() as UserIp)
             .catch(this.handleError);
     }
 
     create(userIp: UserIp): Observable<UserIp> {
+      const options = new RequestOptions();
+      options.withCredentials = true;
+      options.headers = this.headers;
         return this.http
-            .post(this.userIpAddUrl, JSON.stringify(userIp), {headers: this.headers})
+            .post(this.userIpAddUrl, JSON.stringify(userIp), options)
             .map(response => response.json() as UserIp)
             .catch(this.handleError);
     }
 
     search(term: string): Observable<UserIp[]> {
+      const options = new RequestOptions();
+      options.withCredentials = true;
+      options.headers = this.headers;
         return this.http
-            .get(`${this.userIpSearchUrl}=${term}`)
+            .get(`${this.userIpSearchUrl}=${term}`, options)
             .map(response => response.json().data as UserIp[]);
     }
 
     delete(id: number): Observable<void> {
+      const options = new RequestOptions();
+      options.withCredentials = true;
+      options.headers = this.headers;
         const url = `${this.userIpUrl}/${id}`;
-        return this.http.delete(url, {headers: this.headers})
+        return this.http.delete(url, options)
             .map(() => null)
             .catch(this.handleError);
     }
