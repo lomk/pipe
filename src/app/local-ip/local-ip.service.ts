@@ -1,19 +1,20 @@
 import { LocalIp }      from './local-ip';
 
 import {Http, RequestOptions} from '@angular/http';
-import { Injectable }   from '@angular/core';
+import {APP_ID, Injectable} from '@angular/core';
 import {Headers}        from '@angular/http';
 import {Observable}     from 'rxjs/Observable';
+import {Globals}        from '../globals';
 
 @Injectable()
 export class LocalIpService {
-    private localIpAllUrl = 'http://192.168.0.219:8080/api/admin/localIp/all';
-    private localIpUrl = 'http://192.168.0.219:8080/api/admin/localIp';
-    private localIpAddUrl = 'http://192.168.0.219:8080/api/admin/localIp/add';
-    private localIpSearchUrl = 'http://192.168.0.219:8080/api/admin/localIp/search';
+    private localIpAllUrl =  this.globals.API_URL + '/api/admin/localIp/all';
+    private localIpUrl = this.globals.API_URL + '/api/admin/localIp';
+    private localIpAddUrl = this.globals.API_URL + '/api/admin/localIp/add';
+    private localIpSearchUrl = this.globals.API_URL + '/api/admin/localIp/search';
     private headers = new Headers({'Content-Type': 'application/json'});
 
-    constructor(private http: Http) {
+    constructor(private http: Http, private globals: Globals) {
     }
     getLocalIps(): Observable<LocalIp[]> {
       const options = new RequestOptions();

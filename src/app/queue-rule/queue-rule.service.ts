@@ -10,20 +10,21 @@ import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 // import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
+import {Globals} from '../globals';
 
 
 
 
 @Injectable()
 export class QueueRuleService {
-    private queueRuleAllUrl = 'http://192.168.0.219:8080/api/admin/rule/all';
-    private queueRuleUrl = 'http://192.168.0.219:8080/api/admin/rule';
-    private queueRuleAddUrl = 'http://192.168.0.219:8080/api/admin/rule/add';
-    private queueRuleSearchUrl = 'http://192.168.0.219:8080/api/admin/rule/search';
+    private queueRuleAllUrl = this.globals.API_URL + '/api/admin/rule/all';
+    private queueRuleUrl = this.globals.API_URL + '/api/admin/rule';
+    private queueRuleAddUrl = this.globals.API_URL + '/api/admin/rule/add';
+    private queueRuleSearchUrl = this.globals.API_URL + '/api/admin/rule/search';
     private headers = new Headers({'Content-Type': 'application/json'});
 
-    constructor(private http: Http) {
-    }
+  constructor(private http: Http, private globals: Globals) {
+  }
 
     // #Code to get data with Promise
     // getQueueRules(): Promise<QueueRule[]> {

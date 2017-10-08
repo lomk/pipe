@@ -4,18 +4,19 @@ import {Headers}        from '@angular/http';
 import {Observable}     from 'rxjs/Observable';
 
 import {TrafficQueue}   from './traffic-queue';
+import {Globals} from '../globals';
 
 @Injectable()
 export class TrafficQueueService {
-
-    private trafficQueueAllUrl = 'http://192.168.0.219:8080/api/admin/trafficQueue/all';
-    private trafficQueueUrl = 'http://192.168.0.219:8080/api/admin/trafficQueue';
-    private trafficQueueAddUrl = 'http://192.168.0.219:8080/api/admin/trafficQueue/add';
-    private trafficQueueSearchUrl = 'http://192.168.0.219:8080/api/admin/trafficQueue/search';
+    private trafficQueueAllUrl = this.globals.API_URL + '/api/admin/trafficQueue/all';
+    private trafficQueueUrl = this.globals.API_URL + '/api/admin/trafficQueue';
+    private trafficQueueAddUrl = this.globals.API_URL + '/api/admin/trafficQueue/add';
+    private trafficQueueSearchUrl = this.globals.API_URL + '/api/admin/trafficQueue/search';
     private headers = new Headers({'Content-Type': 'application/json'});
 
-    constructor(private http: Http) {
-    }
+  constructor(private http: Http, private globals: Globals) {
+  }
+
     getTrafficQueues(): Observable<TrafficQueue[]> {
       const options = new RequestOptions();
       options.withCredentials = true;

@@ -6,18 +6,19 @@ import {Headers}        from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/observable/throw';
+import {Globals} from '../globals';
 
 @Injectable()
 export class RemoteIpService {
-    private remoteIpAllUrl = 'http://192.168.0.219:8080/api/admin/remoteIp/all';
-    private remoteIpUrl = 'http://192.168.0.219:8080/api/admin/remoteIp';
-    private remoteIpAddUrl = 'http://192.168.0.219:8080/api/admin/remoteIp/add';
-    private remoteIpSearchUrl = 'http://192.168.0.219:8080/api/admin/remoteIp/search';
+    private remoteIpAllUrl = this.globals.API_URL + '/api/admin/remoteIp/all';
+    private remoteIpUrl = this.globals.API_URL + '/api/admin/remoteIp';
+    private remoteIpAddUrl = this.globals.API_URL + '/api/admin/remoteIp/add';
+    private remoteIpSearchUrl = this.globals.API_URL + '/api/admin/remoteIp/search';
     private headers = new Headers({'Content-Type': 'application/json'});
 
 
-    constructor(private http: Http) {
-    }
+  constructor(private http: Http, private globals: Globals) {
+  }
     // Get data whit Promise
     // getRemoteIps(): Promise<RemoteIp[]> {
     //     return this.http.get(this.remoteIpAllUrl)

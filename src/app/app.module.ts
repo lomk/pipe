@@ -5,6 +5,7 @@ import {HttpModule}                 from '@angular/http';
 
 import { AppComponent }             from './app.component';
 import {AppRoutingModule}           from './app-routing.module';
+import {Globals }                   from './globals';
 import {RemoteIpComponent}          from './remote-ip/remote-ip.component';
 import {RemoteIpDetailComponent}    from './remote-ip/remote-ip-details.component';
 import {RemoteIpService}            from './remote-ip/remote-ip.service';
@@ -76,6 +77,7 @@ import {LoginComponent}             from './login/login.component';
         LoginComponent
   ],
     providers: [
+        Globals,
         RemoteIpService,
         QueueRuleService,
         LocalIpService,

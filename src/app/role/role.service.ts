@@ -3,18 +3,19 @@ import {Http, RequestOptions} from '@angular/http';
 import { Injectable }   from '@angular/core';
 import {Headers}        from '@angular/http';
 import {Observable}     from 'rxjs/Observable';
+import {Globals} from '../globals';
 
 @Injectable()
 export class RoleService {
-    private roleAllUrl = 'http://192.168.0.219:8080/api/admin/role/all';
-    private roleUrl = 'http://192.168.0.219:8080/api/admin/role';
-    private roleAddUrl = 'http://192.168.0.219:8080/api/admin/role/add';
-    private roleSearchUrl = 'http://192.168.0.219:8080/api/admin/role/search';
+    private roleAllUrl = this.globals.API_URL + '/api/admin/role/all';
+    private roleUrl = this.globals.API_URL + '/api/admin/role';
+    private roleAddUrl = this.globals.API_URL + '/api/admin/role/add';
+    private roleSearchUrl = this.globals.API_URL + '/api/admin/role/search';
     private headers = new Headers({'Content-Type': 'application/json'});
 
 
-    constructor(private http: Http) {
-    }
+  constructor(private http: Http, private globals: Globals) {
+  }
 
     getRoles(): Observable<Role[]> {
       const options = new RequestOptions();

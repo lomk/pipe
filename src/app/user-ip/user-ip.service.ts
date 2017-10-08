@@ -4,17 +4,18 @@ import {Http, RequestOptions} from '@angular/http';
 import { Injectable }   from '@angular/core';
 import {Headers}        from '@angular/http';
 import {Observable}     from 'rxjs/Observable';
+import {Globals} from '../globals';
 
 @Injectable()
 export class UserIpService {
-    private userIpAllUrl = 'http://192.168.0.219:8080/api/admin/userIp/all';
-    private userIpUrl = 'http://192.168.0.219:8080/api/admin/userIp';
-    private userIpAddUrl = 'http://192.168.0.219:8080/api/admin/userIp/add';
-    private userIpSearchUrl = 'http://192.168.0.219:8080/api/admin/userIp/search';
+    private userIpAllUrl = this.globals.API_URL + '/api/admin/userIp/all';
+    private userIpUrl = this.globals.API_URL + '/api/admin/userIp';
+    private userIpAddUrl = this.globals.API_URL + '/api/admin/userIp/add';
+    private userIpSearchUrl = this.globals.API_URL + '/api/admin/userIp/search';
     private headers = new Headers({'Content-Type': 'application/json'});
 
-    constructor(private http: Http) {
-    }
+  constructor(private http: Http, private globals: Globals) {
+  }
     getUserIps(): Observable<UserIp[]> {
       const options = new RequestOptions();
       options.withCredentials = true;

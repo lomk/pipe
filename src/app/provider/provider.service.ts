@@ -6,18 +6,19 @@ import {Headers}        from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/observable/throw';
+import {Globals} from '../globals';
 
 @Injectable()
 export class ProviderService {
-    private providerAllUrl = 'http://192.168.0.219:8080/api/admin/provider/all';
-    private providerUrl = 'http://192.168.0.219:8080/api/admin/provider';
-    private providerAddUrl = 'http://192.168.0.219:8080/api/admin/provider/add';
-    private providerSearchUrl = 'http://192.168.0.219:8080/api/admin/provider/search';
+    private providerAllUrl = this.globals.API_URL + '/api/admin/provider/all';
+    private providerUrl = this.globals.API_URL + '/api/admin/provider';
+    private providerAddUrl = this.globals.API_URL + '/api/admin/provider/add';
+    private providerSearchUrl = this.globals.API_URL + '/api/admin/provider/search';
     private headers = new Headers({'Content-Type': 'application/json'});
 
 
-    constructor(private http: Http) {
-    }
+  constructor(private http: Http, private globals: Globals) {
+  }
 
     getProviders(): Observable<Provider[]> {
       const options = new RequestOptions();
