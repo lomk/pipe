@@ -19,8 +19,7 @@ export class LoginComponent implements OnInit {
 
   onFormSubmit(form: NgForm) {
     this.loginService.login(form.controls['username'].value, form.controls['password'].value)
-      .subscribe(response => { console.log(response);
-      });
+      .subscribe();
   }
   ngOnInit(): void { console.log('Constructor initialised'); }
 }

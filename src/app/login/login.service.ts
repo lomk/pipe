@@ -26,7 +26,7 @@ export class LoginService {
 
       return this.http
         .post(this.loginUrl, body.toString(), options)
-        .map(response => {
+        .map(response => { console.log(response.toString());
         });
     }
 
