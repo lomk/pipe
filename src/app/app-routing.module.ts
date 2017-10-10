@@ -24,9 +24,10 @@ import {UserFormComponent}          from './user/user-form.component';
 import {UserIpComponent}            from './user-ip/user-ip.component';
 import {UserIpFormComponent}        from './user-ip/user-ip-form.component';
 import {LoginComponent}             from './login/login.component';
+import {LogoutComponent}            from './logout/logout.component';
 
 const routes: Routes = [
-    { path: '',                         redirectTo: '/remote-ips', pathMatch: 'full' },
+    { path: '',                         redirectTo: '/login', pathMatch: 'full' },
     { path: 'remote-ips',               component: RemoteIpComponent },
     { path: 'remote-ip-details/:id',    component: RemoteIpDetailComponent },
     { path: 'new-remote-ip',            component: RemoteIpFormComponent },
@@ -49,7 +50,8 @@ const routes: Routes = [
     { path: 'new-user',                 component: UserFormComponent},
     { path: 'user-ips',                 component: UserIpComponent},
     { path: 'new-user-ip',              component: UserIpFormComponent},
-    { path: 'login',                    component: LoginComponent}
+    { path: 'login',                    component: LoginComponent},
+    { path: 'logout',                   component: LogoutComponent}
 ];
 
 @NgModule({

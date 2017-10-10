@@ -5,7 +5,7 @@ import { UserIpService }       from './user-ip.service';
 import {Router}                 from '@angular/router';
 
 @Component({
-    selector: 'my-local-ips',
+    selector: 'app-user-ips',
     templateUrl: './user-ip.component.html' ,
     // styleUrls: [`./local-ip.component.css`],
     providers: [UserIpService]
@@ -19,7 +19,12 @@ export class UserIpComponent implements OnInit {
         private userIpService: UserIpService) { }
 
     getUserIps(): void {
-        this.userIpService.getUserIps().subscribe(userIps => this.userIps = userIps);
+        this.userIpService.getUserIps().subscribe(userIps => this.userIps = userIps,
+          error => {
+            if ( error === 401 ) {
+              this.router.navigate(['/login']);
+            }
+          });
     }
 
     delete(userIp: UserIp): void {

@@ -5,7 +5,7 @@ import { RemoteIpService } from './remote-ip.service';
 import {Router} from '@angular/router';
 
 @Component({
-    selector: 'my-remote-ips',
+    selector: 'app-remote-ips',
     templateUrl: './remote-ip.component.html' ,
     // styleUrls: [`./remote-ip.component.css`],
     providers: [RemoteIpService]
@@ -19,7 +19,12 @@ export class RemoteIpComponent implements OnInit {
         private remoteIpService: RemoteIpService) { }
 
     getRemoteIps(): void {
-        this.remoteIpService.getRemoteIps().subscribe(remoteIps => this.remoteIps = remoteIps);
+        this.remoteIpService.getRemoteIps().subscribe(remoteIps => this.remoteIps = remoteIps,
+          error => {
+            if ( error === 401 ) {
+              this.router.navigate(['/login']);
+            }
+          });
     }
 
     delete(remoteIp: RemoteIp): void {

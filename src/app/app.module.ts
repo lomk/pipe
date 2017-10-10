@@ -40,6 +40,8 @@ import {UserIpComponent}            from './user-ip/user-ip.component';
 import {UserIpFormComponent}        from './user-ip/user-ip-form.component';
 import {LoginService}               from './login/login.service';
 import {LoginComponent}             from './login/login.component';
+import {LogoutComponent}            from './logout/logout.component';
+import {LogoutService}              from './logout/logout.service';
 
 
 
@@ -74,7 +76,8 @@ import {LoginComponent}             from './login/login.component';
         UserFormComponent,
         UserIpComponent,
         UserIpFormComponent,
-        LoginComponent
+        LoginComponent,
+        LogoutComponent
   ],
     providers: [
         Globals,
@@ -88,7 +91,8 @@ import {LoginComponent}             from './login/login.component';
         RoleService,
         UserService,
         UserIpService,
-        LoginService
+        LoginService,
+        LogoutService
     ],
     bootstrap: [ AppComponent ]
 })

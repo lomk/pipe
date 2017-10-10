@@ -4,7 +4,7 @@ import {QueueRule} from './queue-rule';
 import {Router} from '@angular/router';
 
 @Component({
-    selector: 'my-queue-rules',
+    selector: 'app-queue-rules',
     templateUrl: './queue-rule.component.html' ,
     // styleUrls: [`./queue-rule.component.css`],
     providers: [QueueRuleService]
@@ -21,7 +21,12 @@ export class QueueRuleComponent implements OnInit {
 
     getQueueRules(): void {
         // this.queueRuleService.getQueueRules().then(queueRules => this.queueRules = queueRules);
-        this.queueRuleService.getQueueRules().subscribe(queueRules => this.queueRules = queueRules);
+        this.queueRuleService.getQueueRules().subscribe(queueRules => this.queueRules = queueRules,
+          error => {
+            if ( error === 401 ) {
+              this.router.navigate(['/login']);
+            }
+          });
     }
 
     addQueueRule(address: string): void{

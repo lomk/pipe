@@ -5,7 +5,7 @@ import { TrafficQueueService }  from './traffic-queue.service';
 import {Router}                 from '@angular/router';
 
 @Component({
-    selector: 'my-traffic-queues',
+    selector: 'app-traffic-queues',
     templateUrl: './traffic-queue.component.html' ,
     // styleUrls: [`./traffic-queue.component.css`],
     providers: [TrafficQueueService]
@@ -19,7 +19,12 @@ export class TrafficQueueComponent implements OnInit {
         private trafficQueueService: TrafficQueueService) { }
 
     getTrafficQueues(): void {
-        this.trafficQueueService.getTrafficQueues().subscribe(trafficQueues => this.trafficQueues = trafficQueues);
+        this.trafficQueueService.getTrafficQueues().subscribe(trafficQueues => this.trafficQueues = trafficQueues,
+          error => {
+            if ( error === 401 ) {
+              this.router.navigate(['/login']);
+            }
+          });
     }
 
     delete(trafficQueue: TrafficQueue): void {

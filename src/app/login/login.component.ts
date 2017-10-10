@@ -16,10 +16,13 @@ export class LoginComponent implements OnInit {
   constructor(private router: Router,
               private loginService: LoginService) {}
 
-
   onFormSubmit(form: NgForm) {
     this.loginService.login(form.controls['username'].value, form.controls['password'].value)
-      .subscribe();
+      .subscribe(response => {
+        if ( response.status === 202 ) {
+          this.router.navigate(['/local-ips']);
+        }
+      });
   }
   ngOnInit(): void { console.log('Constructor initialised'); }
 }

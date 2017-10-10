@@ -5,7 +5,7 @@ import { ProviderService } from './provider.service';
 import {Router} from '@angular/router';
 
 @Component({
-    selector: 'my-providers',
+    selector: 'app-providers',
     templateUrl: './provider.component.html' ,
     providers: [ProviderService]
 })
@@ -18,7 +18,12 @@ export class ProviderComponent implements OnInit {
         private providerService: ProviderService) { }
 
     getProviders(): void {
-        this.providerService.getProviders().subscribe(providers => this.providers = providers);
+        this.providerService.getProviders().subscribe(providers => this.providers = providers,
+          error => {
+            if ( error === 401 ) {
+              this.router.navigate(['/login']);
+            }
+          });
     }
 
 

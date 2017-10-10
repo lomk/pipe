@@ -66,11 +66,7 @@ export class UserService {
             .catch(this.handleError);
     }
 
-    public handleError = (error: Response) => {
-
-        // Do messaging and error handling here
-        console.error('An error occurred', error.json()); // for demo purposes only
-
-        return Observable.throw(error.json());
-    }
+  public handleError = (error: Response) => {
+    return Observable.throw(error.status);
+  }
 }

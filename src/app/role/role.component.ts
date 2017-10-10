@@ -5,7 +5,7 @@ import { RoleService } from './role.service';
 import {Router} from '@angular/router';
 
 @Component({
-    selector: 'my-roles',
+    selector: 'app-roles',
     templateUrl: './role.component.html' ,
     providers: [RoleService]
 })
@@ -18,7 +18,12 @@ export class RoleComponent implements OnInit {
         private roleService: RoleService) { }
 
     getRoles(): void {
-        this.roleService.getRoles().subscribe(roles => this.roles = roles);
+        this.roleService.getRoles().subscribe(roles => this.roles = roles,
+          error => {
+            if ( error === 401 ) {
+              this.router.navigate(['/login']);
+            }
+          });
     }
 
 

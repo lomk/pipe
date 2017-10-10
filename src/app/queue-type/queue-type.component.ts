@@ -5,7 +5,7 @@ import { QueueTypeService } from './queue-type.service';
 import {Router} from '@angular/router';
 
 @Component({
-    selector: 'my-queue-types',
+    selector: 'app-queue-types',
     templateUrl: './queue-type.component.html' ,
     // styleUrls: [`./queue-type.component.css`],
     providers: [QueueTypeService]
@@ -19,7 +19,12 @@ export class QueueTypeComponent implements OnInit {
         private queueTypeService: QueueTypeService) { }
 
     getQueueTypes(): void {
-        this.queueTypeService.getQueueTypes().subscribe(queueTypes => this.queueTypes = queueTypes);
+        this.queueTypeService.getQueueTypes().subscribe(queueTypes => this.queueTypes = queueTypes,
+          error => {
+            if ( error === 401 ) {
+              this.router.navigate(['/login']);
+            }
+          });
     }
 
     delete(queueType: QueueType): void {

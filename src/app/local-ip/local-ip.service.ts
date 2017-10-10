@@ -1,6 +1,6 @@
 import { LocalIp }      from './local-ip';
 
-import {Http, RequestOptions} from '@angular/http';
+import {Http, RequestOptions, Response} from '@angular/http';
 import {APP_ID, Injectable} from '@angular/core';
 import {Headers}        from '@angular/http';
 import {Observable}     from 'rxjs/Observable';
@@ -21,7 +21,11 @@ export class LocalIpService {
       options.withCredentials = true;
       options.headers = this.headers;
         return this.http.get(this.localIpAllUrl, options)
-            .map(response => response.json() as LocalIp[])
+            .map(response => {
+              if (response.status === 200) {
+                return response.json() as LocalIp[];
+              }
+            })
             .catch(this.handleError);
     }
 
@@ -51,7 +55,9 @@ export class LocalIpService {
       options.headers = this.headers;
         return this.http
             .get(`${this.localIpSearchUrl}=${term}`, options)
-            .map(response => response.json().data as LocalIp[]);
+            .map(response => {
+              return response.json().data as LocalIp[];
+            });
     }
 
     delete(id: number): Observable<void> {
@@ -65,10 +71,6 @@ export class LocalIpService {
     }
 
     public handleError = (error: Response) => {
-
-        // Do messaging and error handling here
-        console.error('An error occurred', error.json()); // for demo purposes only
-
-        return Observable.throw(error.json());
+        return Observable.throw(error.status);
     }
 }

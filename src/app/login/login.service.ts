@@ -15,7 +15,7 @@ export class LoginService {
   }
 
 
-    login(username: string, password: string): Observable<void> {
+    login(username: string, password: string): Observable<any> {
       const body = new URLSearchParams();
       body.set('username', username);
       body.set('password', password);
@@ -26,7 +26,7 @@ export class LoginService {
 
       return this.http
         .post(this.loginUrl, body.toString(), options)
-        .map(response => { console.log(response.toString());
+        .map(response => { console.log(response.status); return response;
         });
     }
 

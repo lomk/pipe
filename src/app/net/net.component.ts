@@ -6,7 +6,7 @@ import { NetService }           from './net.service';
 
 
 @Component({
-    selector: 'my-nets',
+    selector: 'app-nets',
     templateUrl: './net.component.html',
     providers: [NetService]
 })
@@ -19,7 +19,12 @@ export class NetComponent implements OnInit {
         private netService: NetService) { }
 
     getNets(): void {
-        this.netService.getNets().subscribe(nets => this.nets = nets);
+        this.netService.getNets().subscribe(nets => this.nets = nets,
+          error => {
+            if ( error === 401 ) {
+              this.router.navigate(['/login']);
+            }
+          });
     }
 
     delete(net: Net): void {
