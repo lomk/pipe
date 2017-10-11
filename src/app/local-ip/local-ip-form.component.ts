@@ -39,7 +39,7 @@ export class LocalIpFormComponent implements OnInit {
             .subscribe(localIp => {
               this.localIp = localIp;
               this.router.navigate([this.currentUser.role.name.toLowerCase() + '/local-ips'])
-                .catch(error =>  console.error(error.errorMessage));
+                .catch(error =>  console.error(error));
             });
     }
 }
