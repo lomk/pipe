@@ -11,6 +11,7 @@ import {RemoteIpService}        from '../remote-ip/remote-ip.service';
 import {TrafficQueueService}    from '../traffic-queue/traffic-queue.service';
 import {QueueRule}              from './queue-rule';
 import {NgForm}                 from '@angular/forms';
+import {User} from "../user/user";
 
 @Component({
     selector: 'queue-rule-form',
@@ -34,6 +35,7 @@ export class QueueRuleFormComponent implements OnInit {
     queueType: QueueType;
     trafficQueue: TrafficQueue;
     queueRule: QueueRule;
+  currentUser: User;
 
     constructor(
         private router: Router,
@@ -43,6 +45,7 @@ export class QueueRuleFormComponent implements OnInit {
         private localIpService: LocalIpService,
         private remoteIpService: RemoteIpService
         ) {
+      this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     }
 
     getData(): void {
@@ -62,19 +65,19 @@ export class QueueRuleFormComponent implements OnInit {
     }
 
     onFormSubmit(form: NgForm) {
-        let formLocalIp = form.controls['localIp'].value;
-        let formRemoteIp = form.controls['remoteIp'].value;
-        let formQueueType = form.controls['queueType'].value;
-        let formTrafficQueue = form.controls['trafficQueue'].value;
+        const formLocalIp = form.controls['localIp'].value;
+        const formRemoteIp = form.controls['remoteIp'].value;
+        const formQueueType = form.controls['queueType'].value;
+        const formTrafficQueue = form.controls['trafficQueue'].value;
 
-        let newQueueRule = new QueueRule();
+        const newQueueRule = new QueueRule();
         newQueueRule.localIp = formLocalIp;
         newQueueRule.remoteIp = formRemoteIp;
         newQueueRule.queueType = formQueueType;
         newQueueRule.trafficQueue = formTrafficQueue;
         this.queueRuleService.create(newQueueRule).subscribe(queueRule => {
             this.queueRule = queueRule;
-            this.router.navigate(['/queue-rules']);
+            this.router.navigate(['queue-rules']);
         });
     }
 

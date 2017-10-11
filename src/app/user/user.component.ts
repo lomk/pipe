@@ -11,12 +11,13 @@ import {Router}                 from '@angular/router';
     providers: [UserService]
 })
 export class UserComponent implements OnInit {
+    currentUser: User;
     users: User[];
     selectedUser: User;
 
     constructor(
         private router: Router,
-        private userService: UserService) { }
+        private userService: UserService) { this.currentUser = JSON.parse(localStorage.getItem('currentUser'));}
 
     getUsers(): void {
         this.userService.getUsers().subscribe(users => this.users = users,

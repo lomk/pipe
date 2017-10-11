@@ -3,6 +3,7 @@ import {QueueTypeService} from './queue-type.service';
 import {QueueType} from './queue-type';
 import {Router} from '@angular/router';
 import {NgForm} from '@angular/forms';
+import {User} from "../user/user";
 
 @Component({
     selector: 'queue-type-form',
@@ -12,9 +13,11 @@ import {NgForm} from '@angular/forms';
 export class QueueTypeFormComponent implements OnInit {
     queueType = new QueueType();
     error: String;
+  currentUser: User;
 
     constructor(private router: Router,
                 private queueTypeService: QueueTypeService) {
+      this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     }
 
     ngOnInit(): void {

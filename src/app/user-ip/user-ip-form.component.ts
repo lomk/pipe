@@ -18,11 +18,14 @@ export class UserIpFormComponent implements OnInit {
     users: User[];
     localIps: LocalIp[];
     error: String;
+    currentUser: User;
 
     constructor(private router: Router,
                 private userIpService: UserIpService,
                 private localIpService: LocalIpService,
-                private userService: UserService){};
+                private userService: UserService) {
+      this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    }
 
     getData(): void {
         this.userService.getUsers().subscribe(users => this.users = users);

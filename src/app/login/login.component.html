@@ -1,3 +1,16 @@
+<div class="navbar navbar-default navbar-static-top">
+  <div class="container">
+    <div class="navbar-header">
+      <strong class="navbar-brand">{{title}}</strong>
+    </div>
+    <ul class="nav navbar-nav">
+      <li>
+        <a routerLink="/login" routerLinkActive="active">Login</a>
+      </li>
+    </ul>
+  </div>
+</div>
+<div class="container">
 <form #loginForm="ngForm" (ngSubmit)="onFormSubmit(loginForm)">
   <div class="form-group row">
     <div class="col-xs-2">
@@ -13,4 +26,4 @@
     </div>
   </div>
 </form>
-
+</div>

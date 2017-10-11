@@ -5,6 +5,7 @@ import {LocalIp}            from './local-ip';
 import {Component, OnInit}  from '@angular/core';
 import {Router}             from '@angular/router';
 import {NgForm}             from '@angular/forms';
+import {User}               from '../user/user';
 
 @Component({
     selector: 'local-ip-form',
@@ -15,10 +16,13 @@ export class LocalIpFormComponent implements OnInit {
     localIp = new LocalIp();
     nets: Net[];
     error: String;
+  currentUser: User;
 
     constructor(private router: Router,
                 private localIpService: LocalIpService,
-                private netService: NetService) {}
+                private netService: NetService) {
+      this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    }
 
     getData(): void {
         this.netService.getNets().subscribe(nets => this.nets = nets);
@@ -28,12 +32,14 @@ export class LocalIpFormComponent implements OnInit {
     }
 
     onFormSubmit(form: NgForm) {
-        let newLocalIp = new LocalIp();
+        const newLocalIp = new LocalIp();
         newLocalIp.address = form.controls['address'].value;
         newLocalIp.net = form.controls['net'].value;
         this.localIpService.create(newLocalIp)
-            .subscribe(localIp => {this.localIp = localIp; this.router.navigate(['/local-ips'])
-                .catch(error =>  console.error('asdasdasdasdasd'));
+            .subscribe(localIp => {
+              this.localIp = localIp;
+              this.router.navigate([this.currentUser.role.name.toLowerCase() + '/local-ips'])
+                .catch(error =>  console.error(error.errorMessage));
             });
     }
 }

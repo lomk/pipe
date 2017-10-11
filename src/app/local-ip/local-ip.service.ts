@@ -71,6 +71,6 @@ export class LocalIpService {
     }
 
     public handleError = (error: Response) => {
-        return Observable.throw(error.status);
+        return Observable.throw(error.json());
     }
 }

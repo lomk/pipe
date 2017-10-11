@@ -19,10 +19,13 @@ export class UserFormComponent implements OnInit {
     user = new User();
     roles: Role[];
     error: String;
+  currentUser: User;
 
     constructor(private router: Router,
                 private userService: UserService,
-                private roleService: RoleService) {}
+                private roleService: RoleService) {
+      this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    }
 
     getData(): void {
         this.roleService.getRoles().subscribe(roles => this.roles = roles);

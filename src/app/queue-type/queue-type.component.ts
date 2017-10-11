@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { QueueType } from './queue-type';
 import { QueueTypeService } from './queue-type.service';
 import {Router} from '@angular/router';
+import {User} from "../user/user";
 
 @Component({
     selector: 'app-queue-types',
@@ -11,12 +12,13 @@ import {Router} from '@angular/router';
     providers: [QueueTypeService]
 })
 export class QueueTypeComponent implements OnInit {
+    currentUser: User;
     queueTypes: QueueType[];
     selectedQueueType: QueueType;
 
     constructor(
         private router: Router,
-        private queueTypeService: QueueTypeService) { }
+        private queueTypeService: QueueTypeService) { this.currentUser = JSON.parse(localStorage.getItem('currentUser'));}
 
     getQueueTypes(): void {
         this.queueTypeService.getQueueTypes().subscribe(queueTypes => this.queueTypes = queueTypes,

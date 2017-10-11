@@ -22,12 +22,12 @@
         </td>
         <ng-template #selectedrow>
             <td class="col-sm-1">
-                <button class="btn btn-sm btn-default" 
+                <button class="btn btn-sm btn-default"
                                          (click)="goToDetail()">View Details</button>
             </td>
             <td class="col-sm-1">
-                <button class="btn btn-sm btn-danger" 
-                        (click)="delete(net); 
+                <button class="btn btn-sm btn-danger"
+                        (click)="delete(net);
                         $event.stopPropagation()">Delete</button>
             </td>
         </ng-template>
@@ -39,5 +39,5 @@
 </table>
 
 <div class="row form-group mt-4">
-    <a class="btn btn-md btn-default col-xs-2" routerLink="/new-net" routerLinkActive="active">Add new remote IP</a>
+    <a class="btn btn-md btn-default col-xs-2" routerLink="new-net" routerLinkActive="active">Add new remote IP</a>
 </div>

@@ -3,6 +3,7 @@ import {Router}                 from '@angular/router';
 
 import { Net }                  from './net';
 import { NetService }           from './net.service';
+import {User} from "../user/user";
 
 
 @Component({
@@ -11,12 +12,13 @@ import { NetService }           from './net.service';
     providers: [NetService]
 })
 export class NetComponent implements OnInit {
+    currentUser: User;
     nets: Net[];
     selectedNet: Net;
 
     constructor(
         private router: Router,
-        private netService: NetService) { }
+        private netService: NetService) { this.currentUser = JSON.parse(localStorage.getItem('currentUser'));}
 
     getNets(): void {
         this.netService.getNets().subscribe(nets => this.nets = nets,

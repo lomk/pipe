@@ -3,6 +3,7 @@ import {NetService} from './net.service';
 import {Net} from './net';
 import {Router} from '@angular/router';
 import {NgForm} from '@angular/forms';
+import {User} from "../user/user";
 
 
 @Component({
@@ -13,9 +14,11 @@ import {NgForm} from '@angular/forms';
 export class NetFormComponent implements OnInit {
     net = new Net();
     error: String;
+  currentUser: User;
 
     constructor(private router: Router,
                 private netService: NetService) {
+      this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     }
 
     ngOnInit(): void {

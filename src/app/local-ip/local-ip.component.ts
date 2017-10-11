@@ -3,6 +3,7 @@ import { Component, OnInit }    from '@angular/core';
 import { LocalIp }              from './local-ip';
 import { LocalIpService }       from './local-ip.service';
 import {Router}                 from '@angular/router';
+import {User} from "../user/user";
 
 @Component({
     selector: 'app-local-ips',
@@ -11,12 +12,15 @@ import {Router}                 from '@angular/router';
     providers: [LocalIpService]
 })
 export class LocalIpComponent implements OnInit {
+    currentUser: User;
     localIps: LocalIp[];
     selectedLocalIp: LocalIp;
 
     constructor(
         private router: Router,
-        private localIpService: LocalIpService) { }
+        private localIpService: LocalIpService) {
+        this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    }
 
     getLocalIps(): void {
         this.localIpService.getLocalIps().subscribe(localIps => this.localIps = localIps,

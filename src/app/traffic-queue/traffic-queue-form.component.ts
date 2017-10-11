@@ -3,6 +3,7 @@ import {TrafficQueueService}    from './traffic-queue.service';
 import {TrafficQueue}           from './traffic-queue';
 import {Router}                 from '@angular/router';
 import {NgForm}                 from '@angular/forms';
+import {User} from "../user/user";
 
 @Component({
     selector: 'trafficQueue-form',
@@ -12,9 +13,11 @@ import {NgForm}                 from '@angular/forms';
 export class TrafficQueueFormComponent implements OnInit {
     trafficQueue = new TrafficQueue();
     error: String;
+  currentUser: User;
 
     constructor(private router: Router,
                 private trafficQueueService: TrafficQueueService) {
+      this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     }
 
     ngOnInit(): void {

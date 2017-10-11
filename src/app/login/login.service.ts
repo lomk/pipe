@@ -3,6 +3,7 @@ import { Injectable }   from '@angular/core';
 import {Headers}        from '@angular/http';
 import {Observable}     from 'rxjs/Observable';
 import {Globals} from '../globals';
+import {User} from '../user/user';
 
 
 @Injectable()
@@ -26,8 +27,11 @@ export class LoginService {
 
       return this.http
         .post(this.loginUrl, body.toString(), options)
-        .map(response => { console.log(response.status); return response;
-        });
+        .map(response => {
+          console.log('123' + response.toString());
+          return response.json() as User;
+        })
+        .catch(this.handleError);
     }
 
     logout(): Observable<void> {
@@ -36,4 +40,9 @@ export class LoginService {
         .map(response => {
         });
     }
+
+  public handleError = (error: Response) => {
+    return Observable.throw(error.status);
+  }
 }
+

@@ -3,6 +3,7 @@ import { Component, OnInit }    from '@angular/core';
 import { TrafficQueue }         from './traffic-queue';
 import { TrafficQueueService }  from './traffic-queue.service';
 import {Router}                 from '@angular/router';
+import {User} from "../user/user";
 
 @Component({
     selector: 'app-traffic-queues',
@@ -11,12 +12,13 @@ import {Router}                 from '@angular/router';
     providers: [TrafficQueueService]
 })
 export class TrafficQueueComponent implements OnInit {
+    currentUser: User;
     trafficQueues: TrafficQueue[];
     selectedTrafficQueue: TrafficQueue;
 
     constructor(
         private router: Router,
-        private trafficQueueService: TrafficQueueService) { }
+        private trafficQueueService: TrafficQueueService) { this.currentUser = JSON.parse(localStorage.getItem('currentUser'));}
 
     getTrafficQueues(): void {
         this.trafficQueueService.getTrafficQueues().subscribe(trafficQueues => this.trafficQueues = trafficQueues,

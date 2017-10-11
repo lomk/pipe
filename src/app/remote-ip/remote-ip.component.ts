@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { RemoteIp } from './remote-ip';
 import { RemoteIpService } from './remote-ip.service';
 import {Router} from '@angular/router';
+import {User} from "../user/user";
 
 @Component({
     selector: 'app-remote-ips',
@@ -11,12 +12,13 @@ import {Router} from '@angular/router';
     providers: [RemoteIpService]
 })
 export class RemoteIpComponent implements OnInit {
+    currentUser: User;
     remoteIps: RemoteIp[];
     selectedRemoteIp: RemoteIp;
 
     constructor(
         private router: Router,
-        private remoteIpService: RemoteIpService) { }
+        private remoteIpService: RemoteIpService) { this.currentUser = JSON.parse(localStorage.getItem('currentUser'));}
 
     getRemoteIps(): void {
         this.remoteIpService.getRemoteIps().subscribe(remoteIps => this.remoteIps = remoteIps,

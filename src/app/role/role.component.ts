@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Role } from './role';
 import { RoleService } from './role.service';
 import {Router} from '@angular/router';
+import {User} from "../user/user";
 
 @Component({
     selector: 'app-roles',
@@ -10,12 +11,13 @@ import {Router} from '@angular/router';
     providers: [RoleService]
 })
 export class RoleComponent implements OnInit {
+    currentUser: User;
     roles: Role[];
     selectedRole: Role;
 
     constructor(
         private router: Router,
-        private roleService: RoleService) { }
+        private roleService: RoleService) { this.currentUser = JSON.parse(localStorage.getItem('currentUser'));}
 
     getRoles(): void {
         this.roleService.getRoles().subscribe(roles => this.roles = roles,

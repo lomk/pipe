@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Provider } from './provider';
 import { ProviderService } from './provider.service';
 import {Router} from '@angular/router';
+import {User} from "../user/user";
 
 @Component({
     selector: 'app-providers',
@@ -10,12 +11,13 @@ import {Router} from '@angular/router';
     providers: [ProviderService]
 })
 export class ProviderComponent implements OnInit {
+  currentUser: User;
     providers: Provider[];
     selectedProvider: Provider;
 
     constructor(
         private router: Router,
-        private providerService: ProviderService) { }
+        private providerService: ProviderService) { this.currentUser = JSON.parse(localStorage.getItem('currentUser'));}
 
     getProviders(): void {
         this.providerService.getProviders().subscribe(providers => this.providers = providers,

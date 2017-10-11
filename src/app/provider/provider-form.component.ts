@@ -3,6 +3,7 @@ import {ProviderService} from './provider.service';
 import {Provider} from './provider';
 import {Router} from '@angular/router';
 import {NgForm} from '@angular/forms';
+import {User} from "../user/user";
 
 @Component({
     selector: 'provider-form',
@@ -12,9 +13,11 @@ import {NgForm} from '@angular/forms';
 export class ProviderFormComponent implements OnInit {
     provider = new Provider();
     error: String;
+  currentUser: User;
 
     constructor(private router: Router,
                 private providerService: ProviderService) {
+      this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     }
 
     ngOnInit(): void {

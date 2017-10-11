@@ -10,10 +10,10 @@ import {Globals} from '../globals';
 
 @Injectable()
 export class RemoteIpService {
-    private remoteIpAllUrl = this.globals.API_URL + '/api/admin/remoteIp/all';
-    private remoteIpUrl = this.globals.API_URL + '/api/admin/remoteIp';
-    private remoteIpAddUrl = this.globals.API_URL + '/api/admin/remoteIp/add';
-    private remoteIpSearchUrl = this.globals.API_URL + '/api/admin/remoteIp/search';
+    private remoteIpAllUrl = this.globals.API_URL + '/api/remoteIp/all';
+    private remoteIpUrl = this.globals.API_URL + '/api/remoteIp';
+    private remoteIpAddUrl = this.globals.API_URL + '/api/remoteIp/add';
+    private remoteIpSearchUrl = this.globals.API_URL + '/api/remoteIp/search';
     private headers = new Headers({'Content-Type': 'application/json'});
 
 

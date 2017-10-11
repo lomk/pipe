@@ -17,10 +17,10 @@ import {Globals} from '../globals';
 
 @Injectable()
 export class QueueRuleService {
-    private queueRuleAllUrl = this.globals.API_URL + '/api/admin/rule/all';
-    private queueRuleUrl = this.globals.API_URL + '/api/admin/rule';
-    private queueRuleAddUrl = this.globals.API_URL + '/api/admin/rule/add';
-    private queueRuleSearchUrl = this.globals.API_URL + '/api/admin/rule/search';
+    private queueRuleAllUrl = this.globals.API_URL + '/api/rule/all';
+    private queueRuleUrl = this.globals.API_URL + '/api/rule';
+    private queueRuleAddUrl = this.globals.API_URL + '/api/rule/add';
+    private queueRuleSearchUrl = this.globals.API_URL + '/api/rule/search';
     private headers = new Headers({'Content-Type': 'application/json'});
 
   constructor(private http: Http, private globals: Globals) {

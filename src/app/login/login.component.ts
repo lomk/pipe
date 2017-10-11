@@ -12,15 +12,17 @@ import {Router}             from '@angular/router';
 })
 export class LoginComponent implements OnInit {
   user: User = new User;
+  currentUser: User = new User;
 
   constructor(private router: Router,
               private loginService: LoginService) {}
 
   onFormSubmit(form: NgForm) {
     this.loginService.login(form.controls['username'].value, form.controls['password'].value)
-      .subscribe(response => {
-        if ( response.status === 202 ) {
-          this.router.navigate(['/local-ips']);
+      .subscribe(currentUser => {
+        localStorage.setItem('currentUser', JSON.stringify(currentUser));
+        this.currentUser = currentUser;
+        if (currentUser) {this.router.navigate([this.currentUser.role.name.toLowerCase()]);
         }
       });
   }
