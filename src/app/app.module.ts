@@ -6,10 +6,8 @@ import {HttpModule}                 from '@angular/http';
 import { AppComponent }             from './app.component';
 import {AppRoutingModule}           from './app-routing.module';
 import {Globals }                   from './globals';
-import {LoginService}               from './login/login.service';
-import {LoginComponent}             from './login/login.component';
-import {LogoutComponent}            from './logout/logout.component';
-import {LogoutService}              from './logout/logout.service';
+import {LoginComponent}             from './auth/login.component';
+import {LogoutComponent}            from './auth/logout.component';
 import {AdminModule}                from './admin/admin.module';
 import {TesterModule}               from './tester/tester.module';
 import {RemoteIpDetailComponent}    from './remote-ip/remote-ip-details.component';
@@ -18,6 +16,7 @@ import {RemoteIpFormComponent}      from './remote-ip/remote-ip-form.component';
 import {QueueRuleComponent}         from './queue-rule/queue-rule.component';
 import {QueueRuleDetailsComponent}  from './queue-rule/queue-rule-details.component';
 import {QueueRuleFormComponent}     from './queue-rule/queue-rule-form.component';
+import {AuthService}                from './auth/auth.service';
 
 @NgModule({
     imports: [
@@ -41,8 +40,7 @@ import {QueueRuleFormComponent}     from './queue-rule/queue-rule-form.component
   ],
     providers: [
         Globals,
-        LoginService,
-        LogoutService
+        AuthService
     ],
     bootstrap: [ AppComponent ]
 })

@@ -1,20 +1,20 @@
 
-import {LogoutService}       from './logout.service';
+import {AuthService}       from './auth.service';
 import {Component, OnInit}  from '@angular/core';
 import {Router}             from '@angular/router';
 
 @Component({
   selector: 'app-logout',
   template: `<h1>Logout</h1>`,
-  providers: [LogoutService]
+  providers: [AuthService]
 })
 export class LogoutComponent implements OnInit {
 
   constructor(private router: Router,
-              private logoutService: LogoutService) {}
+              private authService: AuthService) {}
 
   ngOnInit(): void { console.log('Constructor initialised');
-    this.logoutService.logout().subscribe();
+    this.authService.logout().subscribe();
     localStorage.removeItem('currentUser');
     this.router.navigate(['/login']); }
 }

@@ -35,8 +35,7 @@ export class TrafficQueueFormComponent implements OnInit {
         this.trafficQueueService.create(newTrafficQueue)
             .subscribe(trafficQueue => {
               this.trafficQueue = trafficQueue;
-              this.router.navigate([this.currentUser.role.name.toLowerCase() + '/trafficQueues'])
-                .catch(error =>  console.error('asdasdasdasdasd'));
+              this.router.navigate([this.currentUser.role.name.toLowerCase() + '/traffic-queues']);
             });
     }
 }

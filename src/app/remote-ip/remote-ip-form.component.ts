@@ -34,8 +34,9 @@ export class RemoteIpFormComponent implements OnInit {
         newRemoteIp.address = address;
         newRemoteIp.mask = 32;
         this.remoteIpService.create(newRemoteIp)
-                .subscribe(remoteIp => {this.remoteIp = remoteIp; this.router.navigate([this.currentUser.role.name.toLowerCase() + 'remote-ips'])
-                .catch(error =>  console.error('asdasdasdasdasd'));
+          .subscribe(remoteIp => {
+            this.remoteIp = remoteIp;
+            this.router.navigate([this.currentUser.role.name.toLowerCase() + '/remote-ips']);
         });
     }
 }

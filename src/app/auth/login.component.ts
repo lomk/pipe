@@ -1,24 +1,25 @@
 
-import {LoginService}       from './login.service';
-import {Component, OnInit}  from '@angular/core';
+import {AuthService}        from './auth.service';
 import {User}               from '../user/user';
+
+import {Component, OnInit}  from '@angular/core';
 import {NgForm}             from '@angular/forms';
 import {Router}             from '@angular/router';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html' ,
-  providers: [LoginService]
+  providers: [AuthService]
 })
 export class LoginComponent implements OnInit {
   user: User = new User;
   currentUser: User = new User;
 
   constructor(private router: Router,
-              private loginService: LoginService) {}
+              private authService: AuthService) {}
 
   onFormSubmit(form: NgForm) {
-    this.loginService.login(form.controls['username'].value, form.controls['password'].value)
+    this.authService.login(form.controls['username'].value, form.controls['password'].value)
       .subscribe(currentUser => {
         localStorage.setItem('currentUser', JSON.stringify(currentUser));
         this.currentUser = currentUser;

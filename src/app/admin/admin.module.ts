@@ -3,17 +3,10 @@ import { BrowserModule }            from '@angular/platform-browser';
 import { FormsModule }              from '@angular/forms';
 import {HttpModule}                 from '@angular/http';
 
-import { AppComponent }             from '../app.component';
 import {AppRoutingModule}           from '../app-routing.module';
 import {Globals }                   from '../globals';
-import {RemoteIpComponent}          from '../remote-ip/remote-ip.component';
-import {RemoteIpDetailComponent}    from '../remote-ip/remote-ip-details.component';
 import {RemoteIpService}            from '../remote-ip/remote-ip.service';
-import {QueueRuleComponent}         from '../queue-rule/queue-rule.component';
-import {QueueRuleDetailsComponent}  from '../queue-rule/queue-rule-details.component';
 import {QueueRuleService}           from '../queue-rule/queue-rule.service';
-import {QueueRuleFormComponent}     from '../queue-rule/queue-rule-form.component';
-import {RemoteIpFormComponent}      from '../remote-ip/remote-ip-form.component';
 import {LocalIpComponent}           from '../local-ip/local-ip.component';
 import {LocalIpFormComponent}       from '../local-ip/local-ip-form.component';
 import {NetComponent}               from '../net/net.component';
@@ -38,10 +31,9 @@ import {UserFormComponent}          from '../user/user-form.component';
 import {UserIpService}              from '../user-ip/user-ip.service';
 import {UserIpComponent}            from '../user-ip/user-ip.component';
 import {UserIpFormComponent}        from '../user-ip/user-ip-form.component';
-import {LoginService}               from '../login/login.service';
-import {LogoutService}              from '../logout/logout.service';
+import {AuthService}                from '../auth/auth.service';
 import {AdminComponent}             from './admin.component';
-
+import {AdminGuard}                 from './admin-guard.service';
 
 
 @NgModule({
@@ -82,8 +74,8 @@ import {AdminComponent}             from './admin.component';
     RoleService,
     UserService,
     UserIpService,
-    LoginService,
-    LogoutService
+    AuthService,
+    AdminGuard
   ],
   exports: [
     AdminComponent

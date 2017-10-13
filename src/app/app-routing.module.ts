@@ -1,8 +1,8 @@
 import { NgModule }                 from '@angular/core';
 import { RouterModule, Routes }     from '@angular/router';
 
-import {LoginComponent}             from './login/login.component';
-import {LogoutComponent}            from './logout/logout.component';
+import {LoginComponent}             from './auth/login.component';
+import {LogoutComponent}            from './auth/logout.component';
 import {AdminComponent}             from './admin/admin.component';
 import {AdminRoutingModule}         from './admin/admin-routing.module';
 import {TesterComponent}            from './tester/tester.component';
