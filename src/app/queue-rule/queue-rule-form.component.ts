@@ -77,7 +77,7 @@ export class QueueRuleFormComponent implements OnInit {
         newQueueRule.trafficQueue = formTrafficQueue;
         this.queueRuleService.create(newQueueRule).subscribe(queueRule => {
             this.queueRule = queueRule;
-            this.router.navigate(['queue-rules']);
+            this.router.navigate([this.currentUser.role.name.toLowerCase() + 'queue-rules']);
         });
     }
 

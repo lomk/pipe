@@ -32,7 +32,7 @@ export class QueueTypeFormComponent implements OnInit {
         let newQueueType = new QueueType();
         newQueueType.type = type;
         this.queueTypeService.create(newQueueType)
-            .subscribe(queueType => {this.queueType = queueType; this.router.navigate(['/queue-types'])
+            .subscribe(queueType => {this.queueType = queueType; this.router.navigate([this.currentUser.role.name.toLowerCase() + '/queue-types'])
                 .catch(error =>  console.error('asdasdasdasdasd'));
             });
     }

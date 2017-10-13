@@ -28,7 +28,6 @@ export class LoginService {
       return this.http
         .post(this.loginUrl, body.toString(), options)
         .map(response => {
-          console.log('123' + response.toString());
           return response.json() as User;
         })
         .catch(this.handleError);

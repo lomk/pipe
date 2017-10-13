@@ -32,7 +32,7 @@ export class ProviderFormComponent implements OnInit {
         newProvider.name = form.controls['name'].value;
         newProvider.pktMark = form.controls['pktMark'].value;
         this.providerService.create(newProvider)
-            .subscribe(provider => {this.provider = provider; this.router.navigate(['/providers'])
+            .subscribe(provider => {this.provider = provider; this.router.navigate([this.currentUser.role.name.toLowerCase() + '/providers'])
                 .catch(error =>  console.error('asdasdasdasdasd'));
             });
     }

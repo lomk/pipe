@@ -4,19 +4,18 @@
             <label>Add new local IP address: </label>
         </div>
         <div class="col-xs-3">
-            <select class="form-control" name="net" [(ngModel)]="net">
-                <option [ngValue]="null" disabled>Choose net</option>
+            <select class="form-control" title="Choose net" name="net" [(ngModel)]="net">
+              <option [ngValue]="null" disabled selected>Choose user</option>
                 <option *ngFor="let net of nets" [ngValue]="net">
                     {{net.firstOctet}}
                     .{{net.secondOctet}}
                     .{{net.thirdOctet}}
-                    .{{net.lastOctet}}
                 </option>
             </select>
         </div>
         <div class="col-xs-2">
-            <input class="form-control" id="address" required minlength="7"
-                   [(ngModel)]="localIp.address" name="address" #address="ngModel"/>
+            <input class="form-control" id="address" required minlength="1"
+                   [(ngModel)]="localIp.address" name="address" #address="ngModel" placeholder="ip"/>
         </div>
         <div class="col-xs-3">
             <button class="btn btn-md btn-primary col-xs-8">Add</button>
@@ -24,7 +23,6 @@
     </div>
     <div *ngIf="error" class="alert alert-danger">
         <p>{{error}}</p>
-        <p>234234234</p>
     </div>
     <div *ngIf="address.invalid && (address.dirty || address.touched)"
          class="alert alert-danger">

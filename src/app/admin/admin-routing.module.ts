@@ -32,26 +32,26 @@ const adminRoutes: Routes = [
     children: [
       { path: 'remote-ips',               component: RemoteIpComponent },
       { path: 'remote-ip-details/:id',    component: RemoteIpDetailComponent },
-      { path: 'new-remote-ip',            component: RemoteIpFormComponent },
+      { path: 'remote-ips/new',           component: RemoteIpFormComponent },
       { path: 'queue-rules',              component: QueueRuleComponent },
       { path: 'queue-rule-details/:id',   component: QueueRuleDetailsComponent },
-      { path: 'new-queue-rule',           component: QueueRuleFormComponent },
+      { path: 'queue-rules/new',          component: QueueRuleFormComponent },
       { path: 'local-ips',                component: LocalIpComponent },
       { path: 'local-ips/new',            component: LocalIpFormComponent },
       { path: 'nets',                     component: NetComponent },
-      { path: 'new-net',                  component: NetFormComponent},
+      { path: 'nets/new',                 component: NetFormComponent},
       { path: 'providers',                component: ProviderComponent},
-      { path: 'new-provider',             component: ProviderFormComponent},
+      { path: 'providers/new',            component: ProviderFormComponent},
       { path: 'queue-types',              component: QueueTypeComponent},
-      { path: 'new-queue-type',           component: QueueTypeFormComponent},
+      { path: 'queue-types/new',          component: QueueTypeFormComponent},
       { path: 'traffic-queues',           component: TrafficQueueComponent},
-      { path: 'new-traffic-queue',        component: TrafficQueueFormComponent},
-      { path: 'new-role',                 component: RoleFormComponent},
+      { path: 'traffic-queues/new',       component: TrafficQueueFormComponent},
       { path: 'roles',                    component: RoleComponent},
+      { path: 'roles/new',                component: RoleFormComponent},
       { path: 'users',                    component: UserComponent},
-      { path: 'new-user',                 component: UserFormComponent},
+      { path: 'users/new',                component: UserFormComponent},
       { path: 'user-ips',                 component: UserIpComponent},
-      { path: 'new-user-ip',              component: UserIpFormComponent}
+      { path: 'user-ips/new',             component: UserIpFormComponent}
       ]}
 ];
 

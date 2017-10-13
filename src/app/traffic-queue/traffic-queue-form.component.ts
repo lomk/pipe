@@ -28,12 +28,14 @@ export class TrafficQueueFormComponent implements OnInit {
     }
 
     onFormSubmit(form: NgForm) {
-        let newTrafficQueue = new TrafficQueue();
+        const newTrafficQueue = new TrafficQueue();
         newTrafficQueue.name = form.controls['name'].value;
         newTrafficQueue.pktLoss = form.controls['pktLoss'].value;
         newTrafficQueue.pktLatency = form.controls['pktLatency'].value;
         this.trafficQueueService.create(newTrafficQueue)
-            .subscribe(trafficQueue => {this.trafficQueue = trafficQueue; this.router.navigate(['/trafficQueues'])
+            .subscribe(trafficQueue => {
+              this.trafficQueue = trafficQueue;
+              this.router.navigate([this.currentUser.role.name.toLowerCase() + '/trafficQueues'])
                 .catch(error =>  console.error('asdasdasdasdasd'));
             });
     }

@@ -1,6 +1,6 @@
 <h2>Nets</h2>
 <div class="row form-group mt-4">
-    <a class="btn btn-md btn-default col-xs-2" routerLink="/new-net" routerLinkActive="active">Add new net</a>
+    <a class="btn btn-md btn-primary col-xs-2" routerLink="new" routerLinkActive="active">Add new net</a>
 </div>
 <table class="table table">
     <tr>
@@ -8,7 +8,7 @@
         <th class="col-sm-1">address</th>
         <th class="col-sm-1">mask</th>
         <th class="col-sm-1"></th>
-        <th class="col-sm-1"></th>
+        <!--<th class="col-sm-1"></th>-->
     </tr>
 </table>
 <table class="table table">
@@ -21,10 +21,10 @@
         <td *ngIf="selectedNet == net; then selectedrow else unselectedrow">
         </td>
         <ng-template #selectedrow>
-            <td class="col-sm-1">
-                <button class="btn btn-sm btn-default"
-                                         (click)="goToDetail()">View Details</button>
-            </td>
+            <!--<td class="col-sm-1">-->
+                <!--<button class="btn btn-sm btn-primary"-->
+                                         <!--(click)="goToDetail()">View Details</button>-->
+            <!--</td>-->
             <td class="col-sm-1">
                 <button class="btn btn-sm btn-danger"
                         (click)="delete(net);
@@ -33,11 +33,11 @@
         </ng-template>
         <ng-template #unselectedrow>
             <td class="col-sm-1"></td>
-            <td class="col-sm-1"></td>
+            <!--<td class="col-sm-1"></td>-->
         </ng-template>
     </tr>
 </table>
 
 <div class="row form-group mt-4">
-    <a class="btn btn-md btn-default col-xs-2" routerLink="new-net" routerLinkActive="active">Add new remote IP</a>
+    <a class="btn btn-md btn-primary col-xs-2" routerLink="new" routerLinkActive="active">Add new remote IP</a>
 </div>

@@ -28,10 +28,12 @@ export class RoleFormComponent implements OnInit {
     }
 
     onFormSubmit(form: NgForm) {
-        let newRole = new Role();
+        const newRole = new Role();
         newRole.name = form.controls['name'].value;
         this.roleService.create(newRole)
-            .subscribe(role => {this.role = role; this.router.navigate(['/roles'])
+            .subscribe(role => {
+              this.role = role;
+              this.router.navigate([this.currentUser.role.name.toLowerCase() + '/roles'])
                 .catch(error =>  console.error('asdasdasdasdasd'));
             });
     }

@@ -38,8 +38,9 @@ export class LocalIpFormComponent implements OnInit {
         this.localIpService.create(newLocalIp)
             .subscribe(localIp => {
               this.localIp = localIp;
-              this.router.navigate([this.currentUser.role.name.toLowerCase() + '/local-ips'])
-                .catch(error =>  console.error(error));
-            });
+              this.router.navigate([this.currentUser.role.name.toLowerCase() + '/local-ips']);
+            },
+              error => {if (error.json().errorMessage) {this.error = error.json().errorMessage; }}
+            );
     }
 }

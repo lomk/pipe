@@ -37,7 +37,7 @@ export class NetFormComponent implements OnInit {
         newNet.lastOctet = form.controls['lastOctet'].value;
         newNet.mask = form.controls['mask'].value;
         this.netService.create(newNet)
-            .subscribe(net => {this.net = net; this.router.navigate(['/nets'])
+            .subscribe(net => {this.net = net; this.router.navigate([this.currentUser.role.name.toLowerCase() + '/nets'])
                 .catch(error =>  console.log(error));
             });
     }

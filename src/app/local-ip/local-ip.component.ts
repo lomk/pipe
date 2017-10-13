@@ -25,7 +25,7 @@ export class LocalIpComponent implements OnInit {
     getLocalIps(): void {
         this.localIpService.getLocalIps().subscribe(localIps => this.localIps = localIps,
             error => {
-          if ( error === 401 ) {
+          if ( error.status === 401 ) {
             this.router.navigate(['/login']);
           }
         });

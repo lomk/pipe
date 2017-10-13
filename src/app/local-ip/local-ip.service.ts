@@ -39,7 +39,7 @@ export class LocalIpService {
             .catch(this.handleError);
     }
 
-    create(localIp: LocalIp): Observable<LocalIp> {
+    create(localIp: LocalIp): Observable<any> {
       const options = new RequestOptions();
       options.withCredentials = true;
       options.headers = this.headers;
@@ -71,6 +71,6 @@ export class LocalIpService {
     }
 
     public handleError = (error: Response) => {
-        return Observable.throw(error.json());
+        return Observable.throw(error);
     }
 }

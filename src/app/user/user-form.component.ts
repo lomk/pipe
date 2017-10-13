@@ -41,7 +41,9 @@ export class UserFormComponent implements OnInit {
         newUser.password = form.controls['password'].value;
         newUser.confirmPassword = form.controls['confirmPassword'].value;
         this.userService.create(newUser)
-            .subscribe(user => {this.user = user; this.router.navigate(['/users'])
+            .subscribe(user => {
+              this.user = user;
+              this.router.navigate([this.currentUser.role.name.toLowerCase() + '/users'])
                 .catch(error =>  console.error('asdasdasdasdasd'));
             });
     }

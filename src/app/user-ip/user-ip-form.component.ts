@@ -40,7 +40,9 @@ export class UserIpFormComponent implements OnInit {
         newUserIp.user = form.controls['user'].value;
         newUserIp.localIp = form.controls['localIp'].value;
         this.userIpService.create(newUserIp)
-            .subscribe(userIp => {this.userIp = userIp; this.router.navigate(['/user-ips'])
+            .subscribe(userIp => {
+              this.userIp = userIp;
+              this.router.navigate([this.currentUser.role.name.toLowerCase() + '/user-ips'])
                 .catch(error =>  console.error('asdasdasdasdasd'));
             });
     }
