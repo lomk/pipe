@@ -6,28 +6,34 @@ import {ActivatedRouteSnapshot,
 
 import {AuthService}            from '../auth/auth.service';
 import {Injectable}             from '@angular/core';
+import {Observable}             from 'rxjs/Observable';
 
 @Injectable()
 export class AdminGuard implements CanActivate {
   private res = false;
   constructor(private authService: AuthService, private router: Router) {}
 
-  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-    this.checkAdmin();
-    console.log(this.res);
-    return this.res;
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
+    return this.checkAdmin();
+    // return this.res;
+    // return true;
+    // return this.authService.isAdmin();
   }
 
-  checkAdmin(): void {
-    this.authService.getCurrentUser().map((user) => {
+  checkAdmin(): Observable<boolean> {
+    return this.authService.getCurrentUser().map(user => {
       console.log('123123');
       if (user.role.name === 'ADMIN') { this.res = true;
       console.log('YES');
+      return true;
     } else {
         console.log('NO');
-        this.router.navigate(['/' + user.role.name.toLowerCase()]);
+        // this.router.navigate(['/' + user.role.name.toLowerCase()]);
+        return false;
       }}, error => {
+      console.log('ERROR1');
           this.router.navigate(['/login']);
         });
+    // return false;
   }
 }

@@ -33,6 +33,41 @@ export class AuthService {
       .catch(this.handleError);
   }
 
+  isAuthenticated(): boolean {
+    let result = false;
+    const options = new RequestOptions();
+    options.withCredentials = true;
+    options.headers = this.headers;
+    this.http.get(this.currentUserUrl, options)
+      .map(response => {
+        if (response.status === 200) {
+          result = true;
+        }
+      }).catch(this.handleError);
+    return result;
+  }
+
+  isAdmin(): boolean {
+    let result = false;
+    const options = new RequestOptions();
+    options.withCredentials = true;
+    options.headers = this.headers;
+    this.http.get(this.currentUserUrl, options)
+      .map(response => {
+        console.log('44444444444444444');
+        if (response.status === 200) {
+          console.log(response.json());
+          if ( response.json().role.name === 'ADMIN' ) {
+            console.log('TRUE')
+            result = true;
+            return true;
+          }
+        }
+      }).catch(this.handleError);
+    console.log('111111TRUE')
+    return result;
+  }
+
   login(username: string, password: string): Observable<any> {
     const body = new URLSearchParams();
     body.set('username', username);
@@ -63,6 +98,7 @@ export class AuthService {
   }
 
   public handleError = (error: Response) => {
+    console.log('erooro2')
     return Observable.throw(error.status);
   }
 }

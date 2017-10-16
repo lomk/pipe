@@ -25,8 +25,8 @@ import {UserFormComponent}            from '../user/user-form.component';
 import {UserIpComponent}              from '../user-ip/user-ip.component';
 import {UserIpFormComponent}          from '../user-ip/user-ip-form.component';
 import {AdminGuard}                   from './admin-guard.service';
-import {AuthService} from "../auth/auth.service";
-import {AuthGuard} from "../auth/auth-guard.service";
+import {AuthService}                  from '../auth/auth.service';
+import {AuthGuard}                    from '../auth/auth-guard.service';
 
 
 const adminRoutes: Routes = [
@@ -65,9 +65,6 @@ const adminRoutes: Routes = [
   ],
   exports: [
     RouterModule
-  ], providers : [
-    AuthService,
-    AuthGuard
   ]
 })
 export class AdminRoutingModule { }

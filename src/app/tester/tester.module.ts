@@ -10,6 +10,7 @@ import {QueueRuleService}           from '../queue-rule/queue-rule.service';
 import {TrafficQueueService}        from '../traffic-queue/traffic-queue.service';
 import {TesterComponent}            from './tester.component';
 import {AuthService}                from '../auth/auth.service';
+import {TesterGuard}                from './tester-guard.service';
 
 
 
@@ -28,7 +29,8 @@ import {AuthService}                from '../auth/auth.service';
     RemoteIpService,
     QueueRuleService,
     TrafficQueueService,
-    AuthService
+    AuthService,
+    TesterGuard
   ],
   exports: [
     TesterComponent
