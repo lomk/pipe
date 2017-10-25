@@ -3,7 +3,6 @@ import {NgModule}                     from '@angular/core';
 
 import {AdminComponent}               from './admin.component';
 import {RemoteIpComponent}            from '../remote-ip/remote-ip.component';
-import {RemoteIpDetailComponent}      from '../remote-ip/remote-ip-details.component';
 import {RemoteIpFormComponent}        from '../remote-ip/remote-ip-form.component';
 import {QueueRuleComponent}           from '../queue-rule/queue-rule.component';
 import {QueueRuleDetailsComponent}    from '../queue-rule/queue-rule-details.component';
@@ -25,8 +24,7 @@ import {UserFormComponent}            from '../user/user-form.component';
 import {UserIpComponent}              from '../user-ip/user-ip.component';
 import {UserIpFormComponent}          from '../user-ip/user-ip-form.component';
 import {AdminGuard}                   from './admin-guard.service';
-import {AuthService}                  from '../auth/auth.service';
-import {AuthGuard}                    from '../auth/auth-guard.service';
+
 
 
 const adminRoutes: Routes = [
@@ -35,10 +33,8 @@ const adminRoutes: Routes = [
     canActivate: [AdminGuard],
     children: [
       { path: 'remote-ips',               component: RemoteIpComponent },
-      { path: 'remote-ip-details/:id',    component: RemoteIpDetailComponent },
       { path: 'remote-ips/new',           component: RemoteIpFormComponent },
       { path: 'queue-rules',              component: QueueRuleComponent },
-      { path: 'queue-rule-details/:id',   component: QueueRuleDetailsComponent },
       { path: 'queue-rules/new',          component: QueueRuleFormComponent },
       { path: 'local-ips',                component: LocalIpComponent },
       { path: 'local-ips/new',            component: LocalIpFormComponent },

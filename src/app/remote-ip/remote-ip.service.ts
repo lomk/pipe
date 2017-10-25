@@ -10,10 +10,15 @@ import {Globals} from '../globals';
 
 @Injectable()
 export class RemoteIpService {
-    private remoteIpAllUrl = this.globals.API_URL + '/api/remoteIp/all';
-    private remoteIpUrl = this.globals.API_URL + '/api/remoteIp';
-    private remoteIpAddUrl = this.globals.API_URL + '/api/remoteIp/add';
-    private remoteIpSearchUrl = this.globals.API_URL + '/api/remoteIp/search';
+
+  private testerRemoteIpAllUrl = this.globals.API_URL + '/api/tester/remoteIp/all';
+  private testerRemoteIpUrl = this.globals.API_URL + '/api/tester/remoteIp';
+  private testerRemoteIpAddUrl = this.globals.API_URL + '/api/tester/remoteIp/add';
+  private testerRemoteIpSearchUrl = this.globals.API_URL + '/api/tester/remoteIp/search';
+    private remoteIpAllUrl = this.globals.API_URL + '/api/admin/remoteIp/all';
+    private remoteIpUrl = this.globals.API_URL + '/api/admin/remoteIp';
+    private remoteIpAddUrl = this.globals.API_URL + '/api/admin/remoteIp/add';
+    private remoteIpSearchUrl = this.globals.API_URL + '/api/admin/remoteIp/search';
     private headers = new Headers({'Content-Type': 'application/json'});
 
 
@@ -34,6 +39,15 @@ export class RemoteIpService {
           .map(response => response.json() as RemoteIp[])
           .catch(this.handleError);
     }
+
+  getTesterRemoteIps(): Observable<RemoteIp[]> {
+    const options = new RequestOptions();
+    options.withCredentials = true;
+    options.headers = this.headers;
+    return this.http.get(this.testerRemoteIpAllUrl, options)
+      .map(response => response.json() as RemoteIp[])
+      .catch(this.handleError);
+  }
 
     // Get data whit Promise
     // getRemoteIps(): Promise<RemoteIp[]> {
@@ -60,6 +74,16 @@ export class RemoteIpService {
             .catch(this.handleError);
     }
 
+  getTesterRemoteIp(id: number): Observable<RemoteIp> {
+    const options = new RequestOptions();
+    options.withCredentials = true;
+    options.headers = this.headers;
+    const url = `${this.testerRemoteIpUrl}/${id}`;
+    return this.http.get(url, options)
+      .map(response => response.json() as RemoteIp)
+      .catch(this.handleError);
+  }
+
     // create(remoteIp: RemoteIp): Promise<RemoteIp> {
     //     return this.http
     //         .post(this.remoteIpAddUrl, JSON.stringify(remoteIp), {headers: this.headers})
@@ -77,6 +101,17 @@ export class RemoteIpService {
             .catch(this.handleError);
         // .catch(response => Observable.throw(response.json()));
     }
+
+  createTesterRemoteIp(remoteIp: RemoteIp): Observable<RemoteIp> {
+    const options = new RequestOptions();
+    options.withCredentials = true;
+    options.headers = this.headers;
+    return this.http
+      .post(this.testerRemoteIpAddUrl, JSON.stringify(remoteIp), options)
+      .map(response => response.json() as RemoteIp)
+      .catch(this.handleError);
+    // .catch(response => Observable.throw(response.json()));
+  }
 
     search(term: string): Observable<RemoteIp[]> {
       const options = new RequestOptions();
@@ -96,6 +131,16 @@ export class RemoteIpService {
             .map(() => null)
             .catch(this.handleError);
     }
+
+  deleteTesterRemoteIp(id: number): Observable<void> {
+    const options = new RequestOptions();
+    options.withCredentials = true;
+    options.headers = this.headers;
+    const url = `${this.testerRemoteIpUrl}/${id}`;
+    return this.http.delete(url, options)
+      .map(() => null)
+      .catch(this.handleError);
+  }
 
     // private handleError(error: any): Observable<any> {
     //     // console.error('An error occurred', error); // for demo purposes only

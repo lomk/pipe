@@ -8,6 +8,7 @@ import {Globals} from '../globals';
 
 @Injectable()
 export class TrafficQueueService {
+    private testerTrafficQueueAllUrl = this.globals.API_URL + '/api/tester/trafficQueue/all';
     private trafficQueueAllUrl = this.globals.API_URL + '/api/admin/trafficQueue/all';
     private trafficQueueUrl = this.globals.API_URL + '/api/admin/trafficQueue';
     private trafficQueueAddUrl = this.globals.API_URL + '/api/admin/trafficQueue/add';
@@ -25,6 +26,15 @@ export class TrafficQueueService {
             .map(response => response.json() as TrafficQueue[])
             .catch(this.handleError);
     }
+
+  getTesterTrafficQueues(): Observable<TrafficQueue[]> {
+    const options = new RequestOptions();
+    options.withCredentials = true;
+    options.headers = this.headers;
+    return this.http.get(this.testerTrafficQueueAllUrl, options)
+      .map(response => response.json() as TrafficQueue[])
+      .catch(this.handleError);
+  }
 
 
     getTrafficQueue(id: number): Observable<TrafficQueue> {

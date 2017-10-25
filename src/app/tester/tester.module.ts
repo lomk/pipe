@@ -11,6 +11,10 @@ import {TrafficQueueService}        from '../traffic-queue/traffic-queue.service
 import {TesterComponent}            from './tester.component';
 import {AuthService}                from '../auth/auth.service';
 import {TesterGuard}                from './tester-guard.service';
+import {TesterQueueRuleComponent} from "../queue-rule/tester-queue-rule.component";
+import {TesterQueueRuleFormComponent} from "../queue-rule/tester-queue-rule-form.component";
+import {TesterRemoteIpComponent} from "../remote-ip/tester-remote-ip.component";
+import {TesterRemoteIpFormComponent} from "../remote-ip/tester-remote-ip-form.component";
 
 
 
@@ -22,8 +26,12 @@ import {TesterGuard}                from './tester-guard.service';
     AppRoutingModule
   ],
   declarations: [
-    TesterComponent
-  ],
+    TesterComponent,
+    TesterQueueRuleComponent,
+    TesterQueueRuleFormComponent,
+    TesterRemoteIpComponent,
+    TesterRemoteIpFormComponent
+ ],
   providers: [
     Globals,
     RemoteIpService,
@@ -34,6 +42,10 @@ import {TesterGuard}                from './tester-guard.service';
   ],
   exports: [
     TesterComponent
+    // TesterQueueRuleComponent,
+    // TesterQueueRuleFormComponent,
+    // TesterRemoteIpComponent,
+    // TesterRemoteIpFormComponent
   ]
 })
 export class TesterModule { }

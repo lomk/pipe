@@ -23,17 +23,17 @@ export class AdminGuard implements CanActivate {
   checkAdmin(): Observable<boolean> {
     return this.authService.getCurrentUser().map(user => {
       console.log('123123');
-      if (user.role.name === 'ADMIN') { this.res = true;
+      console.log(user.username);
+      console.log(user.role.name);
+      if (user.username != null && user.role.name === 'ADMIN') { this.res = true;
       console.log('YES');
       return true;
     } else {
         console.log('NO');
         // this.router.navigate(['/' + user.role.name.toLowerCase()]);
         return false;
-      }}, error => {
-      console.log('ERROR1');
-          this.router.navigate(['/login']);
-        });
+      }
+    });
     // return false;
   }
 }

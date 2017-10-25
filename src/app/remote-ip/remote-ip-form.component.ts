@@ -6,7 +6,7 @@ import {NgForm} from '@angular/forms';
 import {User} from "../user/user";
 
 @Component({
-    selector: 'remote-ip-form',
+    selector: 'app-remote-ip-form',
     templateUrl: './remote-ip-form.component.html',
     providers: [ RemoteIpService]
 })
@@ -29,8 +29,8 @@ export class RemoteIpFormComponent implements OnInit {
     }
 
     onFormSubmit(form: NgForm) {
-        let address = form.controls['address'].value;
-        let newRemoteIp = new RemoteIp();
+        const address = form.controls['address'].value;
+        const newRemoteIp = new RemoteIp();
         newRemoteIp.address = address;
         newRemoteIp.mask = 32;
         this.remoteIpService.create(newRemoteIp)

@@ -10,6 +10,7 @@ import {Globals} from '../globals';
 
 @Injectable()
 export class QueueTypeService {
+    private testerQueueTypeAllUrl = this.globals.API_URL + '/api/tester/queueType/all';
     private queueTypeAllUrl = this.globals.API_URL + '/api/admin/queueType/all';
     private queueTypeUrl = this.globals.API_URL + '/api/admin/queueType';
     private queueTypeAddUrl = this.globals.API_URL + '/api/admin/queueType/add';
@@ -27,6 +28,15 @@ export class QueueTypeService {
           .map(response => response.json() as QueueType[])
           .catch(this.handleError);
     }
+
+  getTesterQueueTypes(): Observable<QueueType[]> {
+    const options = new RequestOptions();
+    options.withCredentials = true;
+    options.headers = this.headers;
+    return this.http.get(this.testerQueueTypeAllUrl, options)
+      .map(response => response.json() as QueueType[])
+      .catch(this.handleError);
+  }
 
     getQueueType(id: number): Observable<QueueType> {
       const options = new RequestOptions();

@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {QueueRuleService} from './queue-rule.service';
 import {QueueRule} from './queue-rule';
 import {Router} from '@angular/router';
-import {User} from "../user/user";
+import {User} from '../user/user';
 
 @Component({
     selector: 'app-queue-rules',

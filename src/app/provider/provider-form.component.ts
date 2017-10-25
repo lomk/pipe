@@ -28,11 +28,13 @@ export class ProviderFormComponent implements OnInit {
     }
 
     onFormSubmit(form: NgForm) {
-        let newProvider = new Provider();
+        const newProvider = new Provider();
         newProvider.name = form.controls['name'].value;
         newProvider.pktMark = form.controls['pktMark'].value;
         this.providerService.create(newProvider)
-            .subscribe(provider => {this.provider = provider; this.router.navigate([this.currentUser.role.name.toLowerCase() + '/providers'])
+            .subscribe(provider => {
+              this.provider = provider;
+              this.router.navigate([this.currentUser.role.name.toLowerCase() + '/providers'])
                 .catch(error =>  console.error('asdasdasdasdasd'));
             });
     }

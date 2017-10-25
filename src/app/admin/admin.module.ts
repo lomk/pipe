@@ -34,6 +34,10 @@ import {UserIpFormComponent}        from '../user-ip/user-ip-form.component';
 import {AuthService}                from '../auth/auth.service';
 import {AdminComponent}             from './admin.component';
 import {AdminGuard}                 from './admin-guard.service';
+import {RemoteIpComponent} from "../remote-ip/remote-ip.component";
+import {RemoteIpFormComponent} from "../remote-ip/remote-ip-form.component";
+import {QueueRuleComponent} from "../queue-rule/queue-rule.component";
+import {QueueRuleFormComponent} from "../queue-rule/queue-rule-form.component";
 
 
 @NgModule({
@@ -61,6 +65,10 @@ import {AdminGuard}                 from './admin-guard.service';
     UserFormComponent,
     UserIpComponent,
     UserIpFormComponent,
+    RemoteIpComponent,
+    RemoteIpFormComponent,
+    QueueRuleComponent,
+    QueueRuleFormComponent
   ],
   providers: [
     Globals,

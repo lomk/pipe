@@ -22,17 +22,14 @@ export class TesterGuard implements CanActivate {
   checkAdmin(): Observable<boolean> {
     return this.authService.getCurrentUser().map(user => {
       console.log('123123');
-      if (user.role.name === 'TESTER') { this.res = true;
+      if (user.role != null && user.role.name === 'TESTER') { this.res = true;
         console.log('YES');
         return true;
       } else {
         console.log('NO');
         // this.router.navigate(['/' + user.role.name.toLowerCase()]);
         return false;
-      }}, error => {
-      console.log('ERROR1');
-      this.router.navigate(['/login']);
-    });
+      }});
     // return false;
   }
 }

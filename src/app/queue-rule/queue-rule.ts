@@ -9,5 +9,4 @@ export class QueueRule {
     remoteIp: RemoteIp;
     trafficQueue: TrafficQueue;
     queueType: QueueType;
-    // fullRule: string;
 }

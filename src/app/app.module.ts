@@ -10,12 +10,6 @@ import {LoginComponent}             from './auth/login.component';
 import {LogoutComponent}            from './auth/logout.component';
 import {AdminModule}                from './admin/admin.module';
 import {TesterModule}               from './tester/tester.module';
-import {RemoteIpDetailComponent}    from './remote-ip/remote-ip-details.component';
-import {RemoteIpComponent}          from './remote-ip/remote-ip.component';
-import {RemoteIpFormComponent}      from './remote-ip/remote-ip-form.component';
-import {QueueRuleComponent}         from './queue-rule/queue-rule.component';
-import {QueueRuleDetailsComponent}  from './queue-rule/queue-rule-details.component';
-import {QueueRuleFormComponent}     from './queue-rule/queue-rule-form.component';
 import {AuthService}                from './auth/auth.service';
 
 @NgModule({
@@ -29,12 +23,14 @@ import {AuthService}                from './auth/auth.service';
   ],
     declarations: [
         AppComponent,
-        RemoteIpDetailComponent,
-        RemoteIpComponent,
-        RemoteIpFormComponent,
-        QueueRuleComponent,
-        QueueRuleDetailsComponent,
-        QueueRuleFormComponent,
+        // RemoteIpDetailComponent,
+        // RemoteIpComponent,
+        // RemoteIpFormComponent,
+        // QueueRuleComponent,
+        // TesterQueueRuleComponent,
+        // QueueRuleDetailsComponent,
+        // QueueRuleFormComponent,
+        // TesterQueueRuleFormComponent,
         LoginComponent,
         LogoutComponent
   ],

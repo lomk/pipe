@@ -17,10 +17,15 @@ import {Globals} from '../globals';
 
 @Injectable()
 export class QueueRuleService {
-    private queueRuleAllUrl = this.globals.API_URL + '/api/rule/all';
-    private queueRuleUrl = this.globals.API_URL + '/api/rule';
-    private queueRuleAddUrl = this.globals.API_URL + '/api/rule/add';
-    private queueRuleSearchUrl = this.globals.API_URL + '/api/rule/search';
+    private queueRuleAllUrl = this.globals.API_URL + '/api/admin/rule/all';
+    private queueRuleUrl = this.globals.API_URL + '/api/admin/rule';
+    private queueRuleAddUrl = this.globals.API_URL + '/api/admin/rule/add';
+    private queueRuleSearchUrl = this.globals.API_URL + '/api/admin/rule/search';
+
+  private testerQueueRuleAllUrl = this.globals.API_URL + '/api/tester/rule/all';
+  private testerQueueRuleUrl = this.globals.API_URL + '/api/tester/rule';
+  private testerQueueRuleAddUrl = this.globals.API_URL + '/api/tester/rule/add';
+  private testerQueueRuleSearchUrl = this.globals.API_URL + '/api/tester/rule/search';
     private headers = new Headers({'Content-Type': 'application/json'});
 
   constructor(private http: Http, private globals: Globals) {
@@ -42,6 +47,15 @@ export class QueueRuleService {
           .map(res => res.json() as QueueRule[])
           .catch(this.handleError);
     }
+
+  getTesterQueueRules(): Observable<QueueRule[]> {
+    const options = new RequestOptions();
+    options.withCredentials = true;
+    options.headers = this.headers;
+    return this.http.get(this.testerQueueRuleAllUrl, options)
+      .map(res => res.json() as QueueRule[])
+      .catch(this.handleError);
+  }
     // Code to get data with Promise
     // getQueueRule(id: number): Promise<QueueRule> {
     //     const url = `${this.queueRuleUrl}/${id}`;
@@ -68,6 +82,16 @@ export class QueueRuleService {
             .catch(this.handleError);
     }
 
+  testerCreateRule(queueRule: QueueRule): Observable<QueueRule> {
+    const options = new RequestOptions();
+    options.withCredentials = true;
+    options.headers = this.headers;
+    return this.http
+      .post(this.testerQueueRuleAddUrl, JSON.stringify(queueRule), options)
+      .map(response => response.json() as QueueRule)
+      .catch(this.handleError);
+  }
+
     search(term: string): Observable<QueueRule[]> {
       const options = new RequestOptions();
       options.withCredentials = true;
@@ -86,6 +110,16 @@ export class QueueRuleService {
             .map(() => null)
             .catch(this.handleError);
     }
+
+  testerDeleteRule(id: number): Observable<void> {
+    const options = new RequestOptions();
+    options.withCredentials = true;
+    options.headers = this.headers;
+    const url = `${this.testerQueueRuleUrl}/${id}`;
+    return this.http.delete(url, options)
+      .map(() => null)
+      .catch(this.handleError);
+  }
 
   public handleError = (error: Response) => {
     return Observable.throw(error.status);
