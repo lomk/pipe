@@ -19,7 +19,10 @@
         <td class="col-sm-1">{{userIp.id}}</td>
         <td class="col-sm-1">{{userIp.user.username}}</td>
         <td class="col-sm-1">
-            {{userIp.firstOctet}}.{{userIp.secondOctet}}.{{userIp.thirdOctet}}.{{userIp.lastOctet}}
+            {{userIp.firstOctet}}
+          .{{userIp.secondOctet}}
+          .{{userIp.thirdOctet}}
+          .{{userIp.lastOctet}}
         </td>
         <td *ngIf="selectedUserIp == userIp; then selectedrow else unselectedrow">
         </td>
@@ -34,7 +37,6 @@
             </td>
         </ng-template>
         <ng-template #unselectedrow>
-            <td class="col-sm-1"></td>
             <td class="col-sm-1"></td>
         </ng-template>
     </tr>
